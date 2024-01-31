@@ -1,0 +1,99 @@
+.grid {
+  position: relative;
+  background-color: #cccccc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content{
+  max-width: 100%;
+  width: 500px;
+}
+
+.image-user {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+img{
+  border-radius: 40% 40% 0 0;
+  max-width: 100%;
+  width: 130px;
+}
+
+.card {
+  z-index: 2;
+  padding: 5%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 12px #00000071;
+  background: #ffffff;
+  backdrop-filter: blur(4px);
+}
+
+h1 {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 17%;
+  margin-bottom: 10%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+button {
+  padding: 3%;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 20px;
+  margin-bottom: 5%;
+}
+
+span{
+  position: absolute;
+  bottom: 1%;
+  color: #84000a;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .content{
+    max-width: 85%;
+  }
+
+  span{
+    left: 35%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .content{
+    max-width: 85%;
+  }
+
+  span{
+    left: 35%;
+  }
+}
+
+@media screen and (min-width: 1299px) {
+  img{
+    width: 150px;
+  }
+
+  .image-user {
+    top: 20%;
+  }
+}
