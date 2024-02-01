@@ -3,30 +3,28 @@
     <img src="../../../assets/img/user.png" alt="image user login">
   </div>
 
-  <form [formGroup]="loginForm" class="content">
+  <form [formGroup]="loginForm">
     <div class="card">
       <h1>Boas-vindas</h1>
 
       <div class="aling-columns">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Email" type="text" formControlName="loginEmail">
           <mat-icon matPrefix>email</mat-icon>
+          <input matInput placeholder="Email" formControlName="loginEmail">
+          <mat-error *ngIf="loginForm.get('loginEmail')?.hasError('required')"> O e-mail é obrigatório. </mat-error>
+          <mat-error *ngIf="loginForm.get('loginEmail')?.hasError('email')">Verifique o e-mail digitado.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Senha" type="password" formControlName="loginPassword">
           <mat-icon matPrefix>key</mat-icon>
+          <input matInput placeholder="Senha" type="password" formControlName="loginPassword">
+          <mat-error *ngIf="loginForm.get('loginPassword')?.hasError('required')">A senha é obrigatória.</mat-error>
         </mat-form-field>
 
-        <button
-          mat-flat-button
-          color="accent"
-          (click)="submitLoginForm()"
-          [disabled]="!loginForm.valid"
-        >
+        <button mat-flat-button color="accent" (click)="submitLoginForm()" [disabled]="!loginForm.valid">
+          <mat-icon>login</mat-icon>
           Entrar
         </button>
-
         <span matTooltip="Para recuperar a senha, entre em contato com o desenvolvedor">Esqueci a senha?</span>
       </div>
     </div>

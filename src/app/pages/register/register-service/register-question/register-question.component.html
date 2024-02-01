@@ -1,0 +1,56 @@
+<div class="content">
+  <div class="header-content">
+    <h2 mat-dialog-title>Cadastrar Novo Serviço</h2>
+
+    <mat-checkbox (change)="checkboxCliked($event)">Serviço já Concluido</mat-checkbox>
+  </div>
+
+  <form [formGroup]="newRegisterService" >
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do Serviço</mat-label>
+      <input matInput formControlName="nameService">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Selecione a categoria</mat-label>
+      <mat-select disableRipple formControlName="categoryService">
+        <mat-option *ngFor="let option of categoriesService" [value]="option.value">
+          {{ option.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Valor do Serviço</mat-label>
+      <input matInput type="text" placeholder="0" formControlName="valueService" (input)="maskMoneyThree($event)">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Local Realizado</mat-label>
+      <input matInput formControlName="localizationService">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data de Inicio</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" #startDateInput formControlName="dateInitalService">
+      <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data de Finalização</mat-label>
+      <input matInput [matDatepicker]="dp3" [disabled]="fieldInvalid" formControlName="dateFinalService">
+      <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 [disabled]="fieldInvalid"></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="!newRegisterService.valid"
+    >
+      Cadastrar Serviço
+    </button>
+    <br>
+  </form>
+</div>

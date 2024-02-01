@@ -1,0 +1,135 @@
+.table{
+  margin: 2%;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 1%;
+}
+
+.header-table{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+span{
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+th, td{
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+th{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+td{
+  font-size: 15px;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2%;
+}
+
+.edit{
+  background-color: #f7a60f;
+}
+
+.edit:hover{
+  background-color: #bf7f0a;
+}
+
+.delete{
+  background-color: #cf0b0b;
+}
+
+.delete:hover{
+  background-color: #930808;
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+  width: 18%;
+}
+
+.mat-cell{
+  padding: 2% 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content-button{
+  display: flex;
+  align-items: center;
+}
+
+mat-paginator{
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table{
+    margin: 10% 3%;
+    width: 92%;
+    overflow: auto;
+  }
+
+  .header-table{
+    flex-direction: column;
+    margin: 3%;
+  }
+
+  span{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10%;
+  }
+
+  .content{
+    width: 100%;
+  }
+
+  .mat-cell{
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .table{
+    margin: 10% 3%;
+    width: 92%;
+    overflow: auto;
+  }
+
+  .header-table{
+    flex-direction: column;
+    margin: 3%;
+  }
+
+  span{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10%;
+  }
+
+  .content{
+    width: 100%;
+  }
+
+  .mat-cell{
+    font-size: 15px;
+  }
+}

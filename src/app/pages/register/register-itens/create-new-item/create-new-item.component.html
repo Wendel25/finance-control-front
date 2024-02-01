@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="header-content">
+    <h2 mat-dialog-title>{{title}}</h2>
+  </div>
+
+  <form [formGroup]="newRegisterItem">
+    <mat-form-field appearance="outline">
+      <mat-label>Item</mat-label>
+      <input matInput formControlName="nameItem">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Selecione a categoria</mat-label>
+      <mat-select disableRipple formControlName="categoryItem">
+        <mat-option *ngFor="let option of categoriesItem" [value]="option.value">
+          {{ option.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Investimento Inicial</mat-label>
+      <input matInput type="text" placeholder="0" formControlName="InvestItem" (input)="maskMoney($event)">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" formControlName="amountItem">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Pretenção de Receita</mat-label>
+      <input matInput type="text" placeholder="0" formControlName="intentionItem" (input)="maskMoneyTwo($event)">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data de Compra</mat-label>
+      <input matInput [matDatepicker]="picker" #dateInput formControlName="dateSaleItem">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="!newRegisterItem.valid"
+    >
+    Cadastrar Item</button>
+    <br>
+  </form>
+</div>

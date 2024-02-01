@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -12,6 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
+    MatFormFieldModule,
     MatTooltipModule,
     MatIconModule,
     MatButtonModule,
@@ -21,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
   loginForm: FormGroup
 
@@ -36,6 +41,6 @@ export class LoginComponent {
   }
 
   submitLoginForm(){
-    this.router.navigate(['Home'])
+    this.router.navigate(['Dashboard'])
   }
 }

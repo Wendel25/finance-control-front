@@ -1,0 +1,20 @@
+<section class="menu">
+  <button class="itens" (click)="dashboardNavigation()">
+    <mat-icon>home</mat-icon>
+    Dashboard
+  </button>
+
+  <div class="itens-usabel">
+    <div *ngFor="let item of btn" class="aaaaaa">
+      <button class="itens" [routerLink]="item.routerLink">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </button>
+    </div>
+  </div>
+
+  <button class="itens" (click)="logoutNavigation()">
+    <mat-icon>logout</mat-icon>
+    Sair
+  </button>
+</section>
