@@ -50,7 +50,8 @@ export class CreateNewItemComponent {
       InvestItem: ['', Validators.required],
       amountItem: ['', [Validators.required, Validators.min(1)]],
       intentionItem: ['', Validators.required],
-      dateSaleItem: ['', Validators.required]
+      dateSaleItem: ['', Validators.required],
+      noteItem: ['', Validators.required]
     });
   }
 

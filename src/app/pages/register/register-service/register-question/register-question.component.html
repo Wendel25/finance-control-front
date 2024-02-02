@@ -1,8 +1,12 @@
 <div class="content">
   <div class="header-content">
-    <h2 mat-dialog-title>Cadastrar Novo Serviço</h2>
+    <div class="container-header">
+      <h2 mat-dialog-title>Cadastrar Novo Serviço</h2>
+    </div>
 
-    <mat-checkbox (change)="checkboxCliked($event)">Serviço já Concluido</mat-checkbox>
+    <div>
+      <mat-checkbox (change)="checkboxCliked($event)">Serviço já Concluido</mat-checkbox>
+    </div>
   </div>
 
   <form [formGroup]="newRegisterService" >
@@ -43,6 +47,11 @@
       <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
       <mat-datepicker #dp3 [disabled]="fieldInvalid"></mat-datepicker>
     </mat-form-field>
+
+    <div class="docs">
+      <span class="label-docs">Nota Fiscal</span>
+      <input type="file" formControlName="noteService">
+    </div>
 
     <button
       mat-raised-button

@@ -1,0 +1,21 @@
+<section class="content-itens" *ngIf="menuOpen">
+  <button>
+    <div class="btn">
+      <mat-icon>app_registration</mat-icon>
+      Nova categoria
+    </div>
+  </button>
+
+  <button>
+    <div class="btn">
+      <mat-icon>category</mat-icon>
+      Nova sub categoria
+    </div>
+  </button>
+</section>
+
+<button>
+  <div class="btn closed" matTooltip="{{menuText}}" (click)="closedMenu()">
+    <mat-icon class="btn-closed">{{icon}}</mat-icon>
+  </div>
+</button>

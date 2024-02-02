@@ -36,22 +36,41 @@ button{
   cursor: pointer;
   border-radius: 50%;
   padding: 2%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.download{
+  background-color: #757575;
+}
+
+.download:hover{
+  background-color: #545454;
+}
+
+.visibility{
+  background-color: #0b530a;
+}
+
+.visibility:hover{
+  background-color: #169513;
 }
 
 .edit{
-  background-color: #f7a60f;
+  background-color: #936308;
 }
 
 .edit:hover{
-  background-color: #bf7f0a;
+  background-color: #f7a60f;
 }
 
 .delete{
-  background-color: #cf0b0b;
+  background-color: #630606;
 }
 
 .delete:hover{
-  background-color: #930808;
+  background-color: #cf0b0b;
 }
 
 .content{

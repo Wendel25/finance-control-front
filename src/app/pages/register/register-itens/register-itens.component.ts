@@ -50,7 +50,7 @@ const ELEMENT_DATA: tableItens[] = [
 export class RegisterItensComponent {
   constructor(public dialog: MatDialog) {}
 
-  displayedColumns: string[] = ['produto', 'category', 'valor', 'spending', 'revenue', 'profit', 'edit', 'delete'];
+  displayedColumns: string[] = ['produto', 'category', 'valor', 'spending', 'revenue', 'profit', 'note', 'visibility', 'edit', 'delete'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

@@ -49,7 +49,7 @@ const ELEMENT_DATA: tableService[] = [
 export class RegisterServiceComponent {
   constructor(public dialog: MatDialog) {}
 
-  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'edit', 'delete'];
+  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'note', 'visibility', 'edit', 'delete'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

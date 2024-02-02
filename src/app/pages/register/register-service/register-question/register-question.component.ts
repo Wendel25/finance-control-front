@@ -51,7 +51,8 @@ export class RegisterQuestionComponent {
       valueService: ['', Validators.required],
       localizationService: ['', Validators.required],
       dateInitalService: ['', Validators.required],
-      dateFinalService: [{ value: null, disabled: true }, Validators.required]
+      dateFinalService: [{ value: null, disabled: true }, Validators.required],
+      noteService: ['', Validators.required]
     });
   }
 

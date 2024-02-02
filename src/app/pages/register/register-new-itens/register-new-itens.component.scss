@@ -1,0 +1,63 @@
+.content-itens{
+  background-color: #ededed;
+  padding: 11px;
+  border-radius: 0 0 10px 10px;
+}
+
+button {
+  background-color: transparent;
+  margin-right: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  border: 0;
+  width: 230px;
+  cursor: pointer;
+  transition: background-color 1s ease, font-weight 1s ease, font-size 1s ease;
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+button:hover {
+  color: #9c0915;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.closed{
+  position: absolute;
+  right: 0;
+  width: 55px;
+  height: 40px;
+  margin-top: -15px;
+}
+
+.closed > mat-icon{
+  font-size: 50px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-closed{
+  color: #9c0915;
+}
+
+@media (max-width: 768px) {
+  .content-itens{
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .content-itens > button{
+    margin-top: 1%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
