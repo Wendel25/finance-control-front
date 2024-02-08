@@ -52,13 +52,22 @@ export class RegisterQuestionComponent {
       localizationService: ['', Validators.required],
       dateInitalService: ['', Validators.required],
       dateFinalService: [{ value: null, disabled: true }, Validators.required],
-      noteService: ['', Validators.required]
+      noteService: ['', Validators.required],
+      formPGService: ['', Validators.required]
     });
   }
 
   categoriesService = [
     {name: 'Carros', value: '1'},
     {name: 'Compra', value: '2'}
+  ]
+
+  formPayament = [
+    {payment: 'Dinheiro'},
+    {payment: 'Cartão de Crédito'},
+    {payment: 'Cartão de Débito'},
+    {payment: 'PIX'},
+    {payment: 'Cheque'}
   ]
 
   checkboxCliked(event: any){

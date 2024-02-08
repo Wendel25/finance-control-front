@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,18 +8,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { RegisterQuestionComponent } from './register-question/register-question.component';
-
-export interface tableService {
-  produto: string;
-  category: string;
-  valor: string;
-  spending: string;
-  total: string;
-}
-
 @Component({
-  selector: 'app-register-service',
+  selector: 'app-register-sale',
   standalone: true,
   imports: [
     MatPaginatorModule,
@@ -31,18 +20,16 @@ export interface tableService {
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-
-    RegisterQuestionComponent
   ],
-  templateUrl: './register-service.component.html',
+  templateUrl: './register-sale.component.html',
   styleUrl: '../register.component.scss'
 })
 
-export class RegisterServiceComponent {
+export class RegisterSaleComponent {
   constructor(public dialog: MatDialog) {}
 
-  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'note', 'visibility', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<any>([]);
+  displayedColumns: string[] = ['produto', 'category', 'valor', 'revenue', 'payment', 'note', 'visibility', 'edit', 'delete'];
+  dataSource = new MatTableDataSource([]);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,6 +37,6 @@ export class RegisterServiceComponent {
   }
 
   questionRegister() {
-    this.dialog.open(RegisterQuestionComponent);
+   //this.dialog.open(CreateNewItemComponent);
   }
 }

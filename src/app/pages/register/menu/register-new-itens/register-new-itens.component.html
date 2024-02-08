@@ -1,12 +1,12 @@
 <section class="content-itens" *ngIf="menuOpen">
-  <button>
+  <button (click)="newCategory('700ms', '300ms')">
     <div class="btn">
       <mat-icon>app_registration</mat-icon>
       Nova categoria
     </div>
   </button>
 
-  <button>
+  <button (click)="newSubCategory('700ms', '300ms')">
     <div class="btn">
       <mat-icon>category</mat-icon>
       Nova sub categoria

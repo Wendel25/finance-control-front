@@ -16,7 +16,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Selecione a categoria</mat-label>
+      <mat-label>Selecione a sub categoria</mat-label>
       <mat-select disableRipple formControlName="categoryService">
         <mat-option *ngFor="let option of categoriesService" [value]="option.value">
           {{ option.name }}
@@ -39,6 +39,15 @@
       <input matInput [matDatepicker]="startDatePicker" #startDateInput formControlName="dateInitalService">
       <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Forma de Pagamento</mat-label>
+      <mat-select disableRipple formControlName="formPGService">
+        <mat-option *ngFor="let option of formPayament" [value]="option.payment">
+          {{ option.payment }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="outline">

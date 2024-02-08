@@ -19,14 +19,6 @@ export interface tableItens {
   profit: string;
 }
 
-const ELEMENT_DATA: tableItens[] = [
-  { produto: 'Escritório', category: 'Categoria 1', valor: '157,645.84', spending: '124,567.32', revenue: '10,321.75', profit: '50%'},
-  { produto: 'Tecnologia', category: 'Categoria 2', valor: '324,789.56', spending: '289,876.21', revenue: '22,345.89', profit: '21,7%' },
-  { produto: 'Marketing', category: 'Categoria 3', valor: '512,432.10', spending: '498,321.45', revenue: '33,210.54', profit: '11,1%' },
-  { produto: 'Desenvolvimento', category: 'Categoria 4', valor: '1,278,987.65', spending: '1,035,432.10', revenue: '58,432.76', profit: '34.7%' },
-  { produto: 'Viagem de Negócios', category: 'Categoria 5', valor: '268,765.43', spending: '226,543.21', revenue: '15,765.32', profit: '57,3%' }
-];
-
 @Component({
   selector: 'app-register-itens',
   standalone: true,
@@ -50,8 +42,8 @@ const ELEMENT_DATA: tableItens[] = [
 export class RegisterItensComponent {
   constructor(public dialog: MatDialog) {}
 
-  displayedColumns: string[] = ['produto', 'category', 'valor', 'spending', 'revenue', 'profit', 'note', 'visibility', 'edit', 'delete'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['produto', 'category', 'valor', 'spending', 'payment', 'note', 'visibility', 'edit', 'delete'];
+  dataSource = new MatTableDataSource([]);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

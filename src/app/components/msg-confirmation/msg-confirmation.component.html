@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Deseja prosseguir com essa ação?</h1>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button style="background-color: #760707;" (click)="onNoClick()">Cancelar</button>
+  <button mat-flat-button style="background-color: #05a405;" [mat-dialog-close]="true" cdkFocusInitial>Confirmar</button>
+</mat-dialog-actions>

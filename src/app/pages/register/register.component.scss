@@ -31,7 +31,7 @@ td{
   font-size: 15px;
 }
 
-button{
+.btn-service-table{
   border: none;
   cursor: pointer;
   border-radius: 50%;
@@ -97,6 +97,10 @@ mat-paginator{
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.tables{
+  padding-bottom: 1%;
 }
 
 @media (max-width: 768px) {

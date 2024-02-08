@@ -27,8 +27,8 @@ export class MenuComponent {
   ) {}
 
   btn = [
-    {icon: 'app_registration', label: 'Cadastrar', routerLink: '/Registrar'},
-    //{icon: 'category', label: 'Categorias', routerLink: '/Categorias'},
+    {icon: 'app_registration', label: 'Geral', routerLink: '/Registrar'},
+    {icon: 'category', label: 'Produtos', routerLink: '/Categorias'},
     {icon: 'real_estate_agent', label: 'Vendas', routerLink: '/Vender'}
   ]
 
