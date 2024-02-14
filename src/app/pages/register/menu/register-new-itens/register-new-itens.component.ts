@@ -8,8 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { SubCategoryComponent } from './hierarchyCategory/sub-category/sub-category.component';
 import { CategoryComponent } from './hierarchyCategory/category/category.component';
-import { RegisterUserComponent } from './users/register-user/register-user.component';
 import { UsersComponent } from './users/users.component';
+import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 
 @Component({
   selector: 'app-register-new-itens',
@@ -50,6 +50,14 @@ export class RegisterNewItensComponent {
   registerUser(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(UsersComponent, {
       width: '800px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  registerBankAccount(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(BankAccountsComponent, {
+      width: '700px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

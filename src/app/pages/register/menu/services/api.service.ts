@@ -57,4 +57,9 @@ export class ApiService {
     const url = `${this.API_URL_LOCALHOST}users`;
     return this.http.get(url);
   }
+
+  updateUsers(id: string, formData: any): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}user/${id}`;
+    return this.http.put(url, formData);
+  }
 }

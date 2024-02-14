@@ -92,4 +92,31 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.dataUser();
   }
+
+  toggleActive(user: any) {
+    user.active = user.active === 1 ? 0 : 1;
+    user.active = user.active.toString();
+    this.statusUser(user);
+  }
+
+  statusUser(user: any) {
+    const id = user.id;
+    const formData = {
+      name: user.name,
+      nameRBX: user.nameRBX,
+      email: user.email,
+      active: user.active
+    }
+
+    this.apiService.updateUsers(id, formData).subscribe(
+      (data) => {
+        this.successService.successUpdateUser();
+        this.dataUser();
+      },
+      (error) =>{
+        console.log('Erro ao desativar usuario', error);
+        this.errorService.errorUpdateUserStatus();
+      }
+    );
+  }
 }

@@ -49,4 +49,16 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  errorUpdateUser() {
+    this.snackBar.open(`Erro ao atualizar cadastro`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  errorUpdateUserStatus() {
+    this.snackBar.open(`Erro ao desativar usuário`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

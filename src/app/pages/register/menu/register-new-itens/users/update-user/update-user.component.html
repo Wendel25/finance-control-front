@@ -1,1 +1,25 @@
-<p>update-user works!</p>
+<form [formGroup]="formUpdateUser">
+  <div class="content">
+    <h2 mat-dialog-title>Atualizar usuário</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome:</mat-label>
+      <input matInput formControlName="updateNameUser">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome RBX</mat-label>
+      <input matInput formControlName="updateNameRBXUser">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="updateEmailUser">
+    </mat-form-field>
+  </div>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!formUpdateUser.valid" (click)="registerUser()">
+    Atualizar
+  </button>
+  <br><br>
+</form>

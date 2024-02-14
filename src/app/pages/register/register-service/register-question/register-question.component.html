@@ -51,6 +51,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
+      <mat-label>Conta Bancária</mat-label>
+      <mat-select disableRipple formControlName="formPGService">
+        <mat-option *ngFor="let option of bankAccounts" [value]="option.account">
+          {{ option.account }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
       <mat-label>Data de Finalização</mat-label>
       <input matInput [matDatepicker]="dp3" [disabled]="fieldInvalid" formControlName="dateFinalService">
       <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>

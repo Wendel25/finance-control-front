@@ -49,6 +49,11 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="accont">
+      <th mat-header-cell *matHeaderCellDef> Conta Bancária </th>
+      <td mat-cell *matCellDef="let element"> {{element.accont}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="visibility">
       <th mat-header-cell *matHeaderCellDef> Ver mais </th>
       <td mat-cell *matCellDef="let element">

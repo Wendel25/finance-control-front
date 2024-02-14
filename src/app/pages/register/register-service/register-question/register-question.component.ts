@@ -70,6 +70,14 @@ export class RegisterQuestionComponent {
     {payment: 'Cheque'}
   ]
 
+  bankAccounts = [
+    {account: 'Conta 01'},
+    {account: 'Conta 02'},
+    {account: 'Conta 03'},
+    {account: 'Conta 04'},
+    {account: 'Conta 05'},
+  ]
+
   checkboxCliked(event: any){
     this.fieldInvalid = !event.checked;
 

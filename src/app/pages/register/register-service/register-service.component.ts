@@ -41,7 +41,7 @@ export interface tableService {
 export class RegisterServiceComponent {
   constructor(public dialog: MatDialog) {}
 
-  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'note', 'visibility', 'edit', 'delete'];
+  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'note','accont', 'visibility', 'edit', 'delete'];
   dataSource = new MatTableDataSource<any>([]);
 
   applyFilter(event: Event) {

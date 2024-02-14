@@ -43,4 +43,10 @@ export class SuccessService {
       duration: 4000,
     });
   }
+
+  successUpdateUser(){
+    this.snackBar.open(`Usuário atualizado com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }
