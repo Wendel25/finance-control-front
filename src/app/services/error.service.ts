@@ -14,6 +14,12 @@ export class ErrorService {
     });
   }
 
+  errorNewCategoryExiste() {
+    this.snackBar.open(`Essa categoria já existe cadastrada`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
   errorDeleteCategory() {
     this.snackBar.open(`Erro ao deletar categoria`, 'Fechar', {
       duration: 4000,

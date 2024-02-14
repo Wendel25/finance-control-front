@@ -70,7 +70,7 @@ export class UsersComponent implements OnInit {
   dataUser() {
     this.apiService.getUsers().subscribe(
       (data) => {
-        this.users = data.results;
+        this.users = data.result;
         this.dataSource.data = this.users;
       },
       (error) => {

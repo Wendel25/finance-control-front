@@ -60,8 +60,12 @@ export class RegisterCategoryComponent{
           this.newCategory.emit();
         },
         (error) => {
-          console.log(error);
-          this.errorService.errorNewCategory();
+          console.log('Erro ao cadastrar categoria', error);
+          if (error.error && error.error.error) {
+            this.errorService.errorNewCategoryExiste();
+          } else {
+            this.errorService.errorNewCategory();
+          }
         }
       );
     }
