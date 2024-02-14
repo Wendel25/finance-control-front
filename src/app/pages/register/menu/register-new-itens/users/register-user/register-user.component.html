@@ -1,0 +1,41 @@
+<form [formGroup]="registerNewUser">
+  <div class="content">
+    <h2 mat-dialog-title>Cadastrar novo usuário</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome:</mat-label>
+      <input matInput formControlName="nameNewUser">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome RBX</mat-label>
+      <input matInput formControlName="nameRBXNewUser">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="emailNewUser">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha:</mat-label>
+      <input matInput formControlName="passwordNewUser">
+    </mat-form-field>
+
+    <button
+      class="btn" matTooltipPosition="right"
+      matTooltip="Gerar senha aleatória de 12 digitos para usuario" mat-flat-button color="primary" (click)="generatePassword($event)">Gerar Senha</button>
+
+    <div class="content-msg" *ngIf="controlPassword">
+      <div class="passwordGenerated">
+        <span>Senha gerada: <button class="copyPassword" (click)="copyPassword($event)">{{password}}</button></span>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!registerNewUser.valid" (click)="registerUser()">
+    Cadastrar
+  </button>
+  <br><br>
+</form>

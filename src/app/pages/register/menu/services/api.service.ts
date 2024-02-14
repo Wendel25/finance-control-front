@@ -13,7 +13,7 @@ export class ApiService {
 
   private API_URL_LOCALHOST = 'http://localhost:3000/api/';
 
-  getCategory(): Observable<any>{
+  getCategory(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}categories`;
     return this.http.get(url);
   }
@@ -23,12 +23,12 @@ export class ApiService {
     return this.http.post(url, { category: formData.category });
   }
 
-  deleteCategory(id: number): Observable<any>{
+  deleteCategory(id: number): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}category/${id}`;
     return this.http.delete(url);
   }
 
-  getSubCategory(): Observable<any>{
+  getSubCategory(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}subcategories`;
     return this.http.get(url);
   }
@@ -38,8 +38,23 @@ export class ApiService {
     return this.http.post(url, { category: formData.category, subCategory: formData.subCategory });
   }
 
-  deleteSubCategory(id: number): Observable<any>{
+  deleteSubCategory(id: number): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}subcategory/${id}`;
     return this.http.delete(url);
+  }
+
+  registerUser(formData: any): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}register-user`;
+    return this.http.post(url, {
+      name: formData.nameNewUser,
+      nameRBX: formData.nameRBXNewUser,
+      email: formData.emailNewUser,
+      password: formData.passwordNewUser
+    });
+  }
+
+  getUsers(): Observable<any>{
+    const url = `${this.API_URL_LOCALHOST}users`;
+    return this.http.get(url);
   }
 }

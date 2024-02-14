@@ -8,9 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
-import { ApiService } from '../../../services/api.service';
-import { ErrorService } from '../../../../../../services/error.service';
-import { SuccessService } from '../../../../../../services/success.service';
+import { ApiService } from '../../../../services/api.service';
+import { ErrorService } from '../../../../../../../services/error.service';
+import { SuccessService } from '../../../../../../../services/success.service';
 
 @Component({
   selector: 'app-register-category',

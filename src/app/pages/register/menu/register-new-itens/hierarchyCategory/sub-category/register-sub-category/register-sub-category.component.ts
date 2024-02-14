@@ -9,9 +9,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} f
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
-import { ApiService } from '../../../services/api.service';
-import { ErrorService } from '../../../../../../services/error.service';
-import { SuccessService } from '../../../../../../services/success.service';
+import { ApiService } from '../../../../services/api.service';
+import { ErrorService } from '../../../../../../../services/error.service';
+import { SuccessService } from '../../../../../../../services/success.service';
 
 @Component({
   selector: 'app-register-sub-category',

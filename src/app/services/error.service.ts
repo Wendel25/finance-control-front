@@ -31,4 +31,16 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  errorRegisterUser() {
+    this.snackBar.open(`Erro ao cadastrar usuário`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  errorRegisterUserEmail() {
+    this.snackBar.open(`Usuário já cadastrado com este e-mail. Favor tentar novamente`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

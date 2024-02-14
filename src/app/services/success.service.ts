@@ -31,4 +31,16 @@ export class SuccessService {
       duration: 4000,
     });
   }
+
+  successRegisterUSer() {
+    this.snackBar.open(`Usuário cadastrado com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  sucessCopy(){
+    this.snackBar.open(`Copiado com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

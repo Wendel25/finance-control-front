@@ -1,0 +1,44 @@
+.content{
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+mat-form-field,
+.btn{
+  margin: 0 5%;
+  width: 90%;
+}
+
+.content-msg{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.passwordGenerated{
+  margin: 3% 5%;
+  padding: 10px;
+  background-color: #9d7bd742;
+  border-radius: 10px;
+  width: 60%;
+}
+
+.passwordGenerated > span{
+  font-size: 18px;
+}
+
+.copyPassword{
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #5325a3;
+  padding: 3%;
+  border-radius: 18px;
+  color: #fff;
+}
+
+.copyPassword:hover{
+  background-color: #8d64d2c8;
+}

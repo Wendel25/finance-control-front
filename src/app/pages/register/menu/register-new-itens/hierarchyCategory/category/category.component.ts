@@ -10,18 +10,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { ApiService } from './../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 
 import { RegisterCategoryComponent } from './register-category/register-category.component';
-import { MsgConfirmationComponent } from '../../../../../components/msg-confirmation/msg-confirmation.component';
-import { SuccessService } from '../../../../../services/success.service';
-import { ErrorService } from '../../../../../services/error.service';
+import { MsgConfirmationComponent } from '../../../../../../components/msg-confirmation/msg-confirmation.component';
+import { SuccessService } from '../../../../../../services/success.service';
+import { ErrorService } from '../../../../../../services/error.service';
 
 @Component({
   selector: 'app-category',
   standalone: true,
   imports: [
-  MatFormFieldModule,
+    MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,

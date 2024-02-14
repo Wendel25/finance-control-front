@@ -1,63 +1,64 @@
-.content-itens{
+.content-itens {
   background-color: #ededed;
   padding: 11px;
   border-radius: 0 0 10px 10px;
+  display: flex;
+  gap: 1%;
+}
+
+.item {
+  margin-left: 1%;
 }
 
 button {
+  text-align: left;
   background-color: transparent;
-  margin-right: 5px;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   border: 0;
-  width: 230px;
   cursor: pointer;
-  transition: background-color 1s ease, font-weight 1s ease, font-size 1s ease;
+  transition: background-color 0.5s ease, font-weight 0.5s ease;
 }
 
-.btn{
+.btn {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
 }
 
+.btn:hover,
 button:hover {
   color: #9c0915;
-  font-weight: bold;
-  font-size: 18px;
 }
 
-.closed{
-  position: absolute;
-  right: 0;
-  width: 55px;
-  height: 40px;
-  margin-top: -15px;
-}
-
-.closed > mat-icon{
-  font-size: 50px;
-  padding-right: 20px;
+.content-btn {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
-.btn-closed{
-  color: #9c0915;
+mat-icon {
+  font-size: 27px;
+  width: 35px;
+  height: 30px;
+}
+
+.itens {
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+}
+
+.itens > button{
+  margin-bottom: 7px;
 }
 
 @media (max-width: 768px) {
-  .content-itens{
+  .content-itens {
     text-align: center;
     font-size: 18px;
   }
 
-  .content-itens > button{
+  .content-itens>button {
     margin-top: 1%;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
-}
+@media screen and (min-width: 769px) and (max-width: 1024px) {}

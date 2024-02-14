@@ -3,16 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
-import { SubCategoryComponent } from './sub-category/sub-category.component';
-import { CategoryComponent } from './category/category.component';
+import { SubCategoryComponent } from './hierarchyCategory/sub-category/sub-category.component';
+import { CategoryComponent } from './hierarchyCategory/category/category.component';
+import { RegisterUserComponent } from './users/register-user/register-user.component';
+import { UsersComponent } from './users/users.component';
 
 @Component({
   selector: 'app-register-new-itens',
   standalone: true,
   imports: [
-  MatDialogModule,
+  MatMenuModule,
+    MatDialogModule,
     MatTooltip,
     CommonModule,
     MatIconModule
@@ -23,19 +27,9 @@ import { CategoryComponent } from './category/category.component';
 
 export class RegisterNewItensComponent {
 
-  menuOpen: boolean = false
-  icon: string = 'vertical_align_bottom'
-  menuText: string = 'Fechar Menu'
-
   constructor(
     public dialog: MatDialog
-  ){}
-
-  closedMenu(){
-    this.menuOpen = !this.menuOpen;
-    this.icon = this.menuOpen ? 'closed' : 'vertical_align_bottom';
-    this.menuText = this.menuOpen ? 'Fechar menu' : 'Abrir menu';
-  }
+  ) { }
 
   newCategory(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(CategoryComponent, {
@@ -48,6 +42,14 @@ export class RegisterNewItensComponent {
   newSubCategory(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(SubCategoryComponent, {
       width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  registerUser(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(UsersComponent, {
+      width: '800px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

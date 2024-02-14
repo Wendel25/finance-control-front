@@ -1,21 +1,26 @@
-<section class="content-itens" *ngIf="menuOpen">
-  <button (click)="newCategory('700ms', '300ms')">
-    <div class="btn">
-      <mat-icon>app_registration</mat-icon>
-      Nova categoria
-    </div>
-  </button>
+<section class="content-itens">
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="menuCategories" class="btn">
+      <div class="content-btn">
+        <mat-icon>category</mat-icon>
+        Categorias
+      </div>
+    </button>
 
-  <button (click)="newSubCategory('700ms', '300ms')">
-    <div class="btn">
-      <mat-icon>category</mat-icon>
-      Nova sub categoria
-    </div>
-  </button>
-</section>
-
-<button>
-  <div class="btn closed" matTooltip="{{menuText}}" (click)="closedMenu()">
-    <mat-icon class="btn-closed">{{icon}}</mat-icon>
+    <mat-menu #menuCategories="matMenu">
+      <div class="itens">
+        <button (click)="newCategory('700ms', '300ms')">Nova categoria</button>
+        <button (click)="newSubCategory('700ms', '300ms')">Nova sub categoria</button>
+      </div>
+    </mat-menu>
   </div>
-</button>
+
+  <div class="item">
+    <button mat-button class="btn" (click)="registerUser('700ms', '300ms')">
+      <div class="content-btn">
+        <mat-icon>manage_accounts</mat-icon>
+        Usuários
+      </div>
+    </button>
+  </div>
+</section>
