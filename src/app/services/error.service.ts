@@ -61,4 +61,10 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  errorRegisterAccount() {
+    this.snackBar.open(`Erro ao cadastrar conta`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

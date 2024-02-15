@@ -49,4 +49,16 @@ export class SuccessService {
       duration: 4000,
     });
   }
+
+  successRegisterAccount(){
+    this.snackBar.open(`Conta cadastrada com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  successUpdateAccount(){
+    this.snackBar.open(`Conta atualizada com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

@@ -57,7 +57,7 @@ export class RegisterNewItensComponent {
 
   registerBankAccount(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(BankAccountsComponent, {
-      width: '700px',
+      width: '850px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

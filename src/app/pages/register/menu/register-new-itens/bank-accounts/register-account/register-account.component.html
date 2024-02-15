@@ -1,1 +1,39 @@
-<p>register-account works!</p>
+<form [formGroup]="accountsBank">
+  <div class="content">
+    <h2 mat-dialog-title>Cadastrar conta bancária</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Titular:</mat-label>
+      <input matInput formControlName="holder">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Selecione o tipo da conta</mat-label>
+      <mat-select disableRipple formControlName="type_account">
+        <mat-option *ngFor="let option of typeAccount" [value]="option.name">
+          {{ option.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nº conta:</mat-label>
+      <input matInput type="number" formControlName="number_account">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Agência:</mat-label>
+      <input matInput type="number" formControlName="agency">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Banco:</mat-label>
+      <input matInput formControlName="bank">
+    </mat-form-field>
+  </div>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!accountsBank.valid" (click)="registerAccount()">
+    Cadastrar
+  </button>
+  <br><br>
+</form>

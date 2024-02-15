@@ -53,13 +53,28 @@ export class ApiService {
     });
   }
 
-  getUsers(): Observable<any>{
+  getUsers(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}users`;
     return this.http.get(url);
   }
 
   updateUsers(id: string, formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}user/${id}`;
+    return this.http.put(url, formData);
+  }
+
+  getAccounts(): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}accounts`;
+    return this.http.get(url);
+  }
+
+  insertAccount(formData: any): Observable<any>{
+    const url = `${this.API_URL_LOCALHOST}new-accounts`
+    return this.http.post(url, formData);
+  }
+
+  updateAccount(id: string, formData: any): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}account/${id}`;
     return this.http.put(url, formData);
   }
 }
