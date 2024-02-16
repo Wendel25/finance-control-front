@@ -67,4 +67,22 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  loginEmail() {
+    this.snackBar.open(`Email incorreto. Por favor, verifique sua senha e tente novamente`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  loginPassword() {
+    this.snackBar.open(`Senha incorreta. Por favor, verifique sua senha e tente novamente`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  authLogin() {
+    this.snackBar.open(`Erro ao autenticar usuário. Por favor, tente novamente mais tarde`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

@@ -5,6 +5,7 @@ import { Router, RouterModule  } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-menu',
@@ -23,7 +24,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 export class MenuComponent {
   constructor(
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   btn = [
@@ -38,6 +40,9 @@ export class MenuComponent {
   }
 
   logoutNavigation(){
+    this.cookieService.delete('name');
+    this.cookieService.delete('token');
+
     this.router.navigate(['']);
   }
 }

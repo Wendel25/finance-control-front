@@ -10,15 +10,15 @@
       <div class="aling-columns">
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>email</mat-icon>
-          <input matInput placeholder="Email" formControlName="loginEmail">
-          <mat-error *ngIf="loginForm.get('loginEmail')?.hasError('required')"> O e-mail é obrigatório. </mat-error>
-          <mat-error *ngIf="loginForm.get('loginEmail')?.hasError('email')">Verifique o e-mail digitado.</mat-error>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')"> O e-mail é obrigatório. </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Verifique o e-mail digitado.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>key</mat-icon>
-          <input matInput placeholder="Senha" type="password" formControlName="loginPassword">
-          <mat-error *ngIf="loginForm.get('loginPassword')?.hasError('required')">A senha é obrigatória.</mat-error>
+          <input matInput placeholder="Senha" type="password" formControlName="password">
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">A senha é obrigatória.</mat-error>
         </mat-form-field>
 
         <button mat-flat-button color="accent" (click)="submitLoginForm()" [disabled]="!loginForm.valid">
