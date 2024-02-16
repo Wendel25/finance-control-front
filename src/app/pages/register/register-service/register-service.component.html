@@ -17,27 +17,47 @@
   <table mat-table [dataSource]="dataSource" >
     <ng-container matColumnDef="service">
       <th mat-header-cell *matHeaderCellDef> Serviço</th>
-      <td mat-cell *matCellDef="let element"> {{element.produto}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.service}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Categoria</th>
-      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="valor">
-      <th mat-header-cell *matHeaderCellDef> Invest. Inicial </th>
-      <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="spending">
-      <th mat-header-cell *matHeaderCellDef> Invest. Adicionais</th>
-      <td mat-cell *matCellDef="let element"> {{element.spending}} </td>
+    <ng-container matColumnDef="subCategory">
+      <th mat-header-cell *matHeaderCellDef>Sub Categoria</th>
+      <td mat-cell *matCellDef="let element"> {{element.sub_category}} </td>
     </ng-container>
 
     <ng-container matColumnDef="total">
       <th mat-header-cell *matHeaderCellDef> Total </th>
-      <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.value_total}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="localization">
+      <th mat-header-cell *matHeaderCellDef> Local </th>
+      <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="provider">
+      <th mat-header-cell *matHeaderCellDef> Prestador </th>
+      <td mat-cell *matCellDef="let element"> {{element.service_provider}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formPayment">
+      <th mat-header-cell *matHeaderCellDef> Pagamento </th>
+      <td mat-cell *matCellDef="let element"> {{element.form_payment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bank">
+      <th mat-header-cell *matHeaderCellDef> Banco </th>
+      <td mat-cell *matCellDef="let element"> {{element.bank}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accont">
+      <th mat-header-cell *matHeaderCellDef> Conta Bancária </th>
+      <td mat-cell *matCellDef="let element"> {{element.account}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateFinal">
+      <th mat-header-cell *matHeaderCellDef> Finalizado </th>
+      <td mat-cell *matCellDef="let element"> {{ element.date_final | date: 'dd/MM/yyyy' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="note">
@@ -47,11 +67,6 @@
           <mat-icon>download</mat-icon>
         </button>
       </td>
-    </ng-container>
-
-    <ng-container matColumnDef="accont">
-      <th mat-header-cell *matHeaderCellDef> Conta Bancária </th>
-      <td mat-cell *matCellDef="let element"> {{element.accont}} </td>
     </ng-container>
 
     <ng-container matColumnDef="visibility">
@@ -84,10 +99,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-  <mat-paginator
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]">
-  </mat-paginator>
 </section>

@@ -1,0 +1,25 @@
+.content{
+  width: 600px;
+}
+
+.fields{
+  display: flex;
+  justify-content: space-between;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5%;
+}
+
+mat-form-field{
+  margin: 0 3%;
+  width: 100%;
+}
+
+.btn{
+  width: 94%;
+  margin: 0 3%;
+}

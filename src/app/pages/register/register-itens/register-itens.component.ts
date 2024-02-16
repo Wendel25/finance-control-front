@@ -6,7 +6,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { CreateNewItemComponent } from './create-new-item/create-new-item.component';
 
@@ -23,8 +22,6 @@ export interface tableItens {
   selector: 'app-register-itens',
   standalone: true,
   imports: [
-
-  MatPaginatorModule,
     MatButtonModule,
     MatDialogModule,
     MatTooltipModule,

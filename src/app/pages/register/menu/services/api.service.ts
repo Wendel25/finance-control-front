@@ -68,13 +68,18 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  insertAccount(formData: any): Observable<any>{
-    const url = `${this.API_URL_LOCALHOST}new-accounts`
+  insertAccount(formData: any): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}new-accounts`;
     return this.http.post(url, formData);
   }
 
   updateAccount(id: string, formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}account/${id}`;
     return this.http.put(url, formData);
+  }
+
+  getDataProviders(): Observable<any> {
+    const url = `${this.API_URL_LOCALHOST}providers`;
+    return this.http.get(url);
   }
 }

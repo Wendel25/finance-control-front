@@ -40,10 +40,18 @@ mat-icon {
   height: 30px;
 }
 
-.itens {
-  width: 170px;
+.itens,
+.itens-two {
   display: flex;
   flex-direction: column;
+}
+
+.itens {
+  width: 180px;
+}
+
+.itens-two{
+  width: 240px;
 }
 
 .itens > button{

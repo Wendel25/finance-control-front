@@ -1,0 +1,30 @@
+.content{
+  margin: 2% 1%;
+  background-color: #fff;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+
+th{
+  text-align: center;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+td{
+  text-align: center;
+  font-size: 17px;
+}
+
+mat-paginator{
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

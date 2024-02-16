@@ -1,81 +1,141 @@
 <div class="content">
   <div class="header-content">
-    <div class="container-header">
-      <h2 mat-dialog-title>Cadastrar Novo Serviço</h2>
-    </div>
-
-    <div>
-      <mat-checkbox (change)="checkboxCliked($event)">Serviço já Concluido</mat-checkbox>
-    </div>
+    <h2 mat-dialog-title>Cadastrar Novo Serviço</h2>
   </div>
 
-  <form [formGroup]="newRegisterService" >
-    <mat-form-field appearance="outline">
-      <mat-label>Nome do Serviço</mat-label>
-      <input matInput formControlName="nameService">
-    </mat-form-field>
+  <form [formGroup]="newRegisterService">
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Serviço</mat-label>
+        <input matInput formControlName="service_name">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Selecione a sub categoria</mat-label>
-      <mat-select disableRipple formControlName="categoryService">
-        <mat-option *ngFor="let option of categoriesService" [value]="option.value">
-          {{ option.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor do Serviço</mat-label>
-      <input matInput type="text" placeholder="0" formControlName="valueService" (input)="maskMoneyThree($event)">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Local Realizado</mat-label>
-      <input matInput formControlName="localizationService">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Data de Inicio</mat-label>
-      <input matInput [matDatepicker]="startDatePicker" #startDateInput formControlName="dateInitalService">
-      <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #startDatePicker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Forma de Pagamento</mat-label>
-      <mat-select disableRipple formControlName="formPGService">
-        <mat-option *ngFor="let option of formPayament" [value]="option.payment">
-          {{ option.payment }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Conta Bancária</mat-label>
-      <mat-select disableRipple formControlName="formPGService">
-        <mat-option *ngFor="let option of bankAccounts" [value]="option.account">
-          {{ option.account }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Data de Finalização</mat-label>
-      <input matInput [matDatepicker]="dp3" [disabled]="fieldInvalid" formControlName="dateFinalService">
-      <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
-      <mat-datepicker #dp3 [disabled]="fieldInvalid"></mat-datepicker>
-    </mat-form-field>
-
-    <div class="docs">
-      <span class="label-docs">Comprovante</span>
-      <input type="file" formControlName="noteService">
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select disableRipple formControlName="category" (selectionChange)="getSubCategories($event)">
+          <mat-option *ngFor="let option of categories" [value]="option.name">
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-    <button
-      mat-raised-button
-      color="accent"
-      [disabled]="!newRegisterService.valid"
-    >
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Sub categoria</mat-label>
+        <mat-select disableRipple formControlName="sub_category">
+          <mat-option *ngFor="let option of subCategories" [value]="option.id">
+            {{ option.subCategory }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Inicial</mat-label>
+        <input matInput type="text" placeholder="0" formControlName="value_initial" (input)="maskMoneyOne($event)" (blur)="getValueInitial()">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Adicional</mat-label>
+        <input matInput type="text" placeholder="0" formControlName="value_additional" (input)="maskMoneyTwo($event)" (blur)="getValueInitial()">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Total</mat-label>
+        <input matInput formControlName="value_total" readonly placeholder="0" >
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Local Realizado</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prestador</mat-label>
+        <mat-select disableRipple formControlName="service_provider">
+          <mat-option>
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Forma de Pagamento</mat-label>
+        <mat-select disableRipple formControlName="form_payment">
+          <mat-option *ngFor="let option of formPayament" [value]="option.payment">
+            {{ option.payment }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Banco</mat-label>
+        <mat-select disableRipple formControlName="bank" (selectionChange)="getDataByBank($event)">
+          <mat-option *ngFor="let option of banks" [value]="option.bank">
+            {{ option.bank }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Conta</mat-label>
+        <mat-select disableRipple formControlName="account">
+          <mat-option [value]="account">
+            {{ account }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Agência</mat-label>
+        <mat-select disableRipple formControlName="agency">
+          <mat-option [value]="agency">
+            {{ agency }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Data de Inicio</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" #startDateInput formControlName="date_initial">
+        <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data de Finalização</mat-label>
+        <input matInput [matDatepicker]="finalDatePicker" #finalDateInput formControlName="date_final">
+        <mat-datepicker-toggle matIconSuffix [for]="finalDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #finalDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline" class="textarea">
+        <mat-label>Observação</mat-label>
+        <textarea matInput #obsevation formControlName="observation" maxlength="3000"></textarea>
+        <mat-hint align="end">{{obsevation.value.length}} / 3.000</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <div class="docs">
+        <span class="label-docs">Comprovante</span>
+        <input type="file" formControlName="proof">
+      </div>
+    </div>
+
+    <button mat-raised-button color="accent" [disabled]="!newRegisterService.valid">
       Cadastrar Serviço
     </button>
     <br>

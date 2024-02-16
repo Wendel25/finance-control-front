@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -7,9 +9,9 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { RegisterQuestionComponent } from './register-question/register-question.component';
+import { RegisterServiceService } from './service/register-service.service';
 
 export interface tableService {
   produto: string;
@@ -23,7 +25,8 @@ export interface tableService {
   selector: 'app-register-service',
   standalone: true,
   imports: [
-    MatPaginatorModule,
+    CommonModule,
+    HttpClientModule,
     MatButtonModule,
     MatDialogModule,
     MatTooltipModule,
@@ -34,14 +37,22 @@ export interface tableService {
 
     RegisterQuestionComponent
   ],
+  providers: [RegisterServiceService],
   templateUrl: './register-service.component.html',
   styleUrl: '../register.component.scss'
 })
 
-export class RegisterServiceComponent {
-  constructor(public dialog: MatDialog) {}
+export class RegisterServiceComponent implements OnInit {
+  constructor(
+    public dialog: MatDialog,
+    private apiService: RegisterServiceService
+  ) { }
 
-  displayedColumns: string[] = ['service', 'category', 'valor', 'spending', 'total', 'note','accont', 'visibility', 'edit', 'delete'];
+  services: any[] = []
+
+  displayedColumns: string[] = [
+    'service', 'subCategory', 'total', 'localization', 'provider', 'formPayment',
+    'bank', 'accont', 'dateFinal', 'note', 'visibility', 'edit', 'delete'];
   dataSource = new MatTableDataSource<any>([]);
 
   applyFilter(event: Event) {
@@ -49,7 +60,23 @@ export class RegisterServiceComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getData() {
+    this.apiService.getServices().subscribe(
+      (data) => {
+        this.services = data.results
+        this.dataSource.data = this.services
+      },
+      (error) => {
+        console.log("Erro ao buscar serviços", error);
+      }
+    )
+  }
+
   questionRegister() {
     this.dialog.open(RegisterQuestionComponent);
+  }
+
+  ngOnInit(): void {
+    this.getData();
   }
 }

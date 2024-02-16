@@ -10,12 +10,14 @@ import { SubCategoryComponent } from './hierarchyCategory/sub-category/sub-categ
 import { CategoryComponent } from './hierarchyCategory/category/category.component';
 import { UsersComponent } from './users/users.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
+import { SupplierComponent } from '../../../geral-external/supplier/supplier.component';
+import { GeralProvidersComponent } from '../../../geral-external/geral-providers/geral-providers.component';
 
 @Component({
   selector: 'app-register-new-itens',
   standalone: true,
   imports: [
-  MatMenuModule,
+    MatMenuModule,
     MatDialogModule,
     MatTooltip,
     CommonModule,
@@ -57,7 +59,23 @@ export class RegisterNewItensComponent {
 
   registerBankAccount(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(BankAccountsComponent, {
-      width: '850px',
+      width: '1000px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  registerSupplier(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(SupplierComponent, {
+      width: '800px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  serviceProvider(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(GeralProvidersComponent, {
+      width: '1100px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
