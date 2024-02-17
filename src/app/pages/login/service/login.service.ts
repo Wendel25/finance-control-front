@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  private API_URL_LOCALHOST = 'http://localhost:3000/api/';
+  private API_URL = 'http://localhost:3000/api/';
 
   login(formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}login`;
+    const url = `${this.API_URL}login`;
     return this.http.post(url, formData);
   }
 }

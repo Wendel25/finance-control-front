@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MenuComponent } from '../../components/menu/menu.component';
+import { MenuComponent } from '../../shared/components/menu/menu.component';
 import { RegisterItensComponent } from './register-itens/register-itens.component';
 import { RegisterServiceComponent } from './register-service/register-service.component';
 import { RegisterNewItensComponent } from './menu/register-new-itens/register-new-itens.component';

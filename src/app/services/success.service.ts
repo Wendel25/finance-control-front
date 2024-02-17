@@ -61,4 +61,10 @@ export class SuccessService {
       duration: 4000,
     });
   }
+
+  successRegisterProvider(){
+    this.snackBar.open(`Cadastro realizado com sucesso`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

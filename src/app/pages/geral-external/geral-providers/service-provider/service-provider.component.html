@@ -1,6 +1,6 @@
 <div class="content" *ngIf="formPhysicalPerson">
   <div class="header">
-    <h2 mat-dialog-title>{{title}}</h2>
+    <h2 mat-dialog-title>Cadastrar prestador de serviço</h2>
     <mat-slide-toggle (change)="changeForm($event)">{{legalPerson}}</mat-slide-toggle>
   </div>
 
@@ -34,24 +34,43 @@
     <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Celular</mat-label>
-        <input matInput formControlName="first_phone" type="tel" mask="(00) 00000-0000">
+        <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Telefone Reserva</mat-label>
-        <input matInput formControlName="second_phone" mask="(00) 0000-0000">
+        <input matInput formControlName="number_phone_reserve" mask="(00) 0000-0000">
       </mat-form-field>
     </div>
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Endereço</mat-label>
-        <input matInput formControlName="localization">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" type="text" mask="00000-000" (blur)="getLocalizationByCEP($event)">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="city" [value]="city">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="district" [value]="district">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
         <mat-label>Serviço Prestado</mat-label>
-        <input matInput formControlName="service_name">
+        <input matInput formControlName="service_provider">
       </mat-form-field>
     </div>
   </form>
@@ -62,7 +81,7 @@
 
 <div class="content" *ngIf="formLegalPerson">
   <div class="header">
-    <h2 mat-dialog-title>{{title}}</h2>
+    <h2 mat-dialog-title>Cadastrar prestador de serviço</h2>
     <mat-slide-toggle (change)="changeForm($event)" checked>{{phisicalPerson}}</mat-slide-toggle>
   </div>
 
@@ -105,10 +124,29 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Endereço</mat-label>
-        <input matInput formControlName="localization">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" type="text" mask="00000-000" (blur)="getLocalizationByCEP($event)">
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="city" [value]="city">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="district" [value]="district">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Serviço Prestado</mat-label>
         <input matInput formControlName="service_name">

@@ -16,7 +16,7 @@ export class ApiService {
     private cookie: CookieService
   ) {}
 
-  private API_URL_LOCALHOST = environment_local.apiUrl;
+  private API_URL = environment_local.apiUrl;
 
   addTokenToHeaders() {
     const token = this.cookie.get('token');
@@ -33,79 +33,79 @@ export class ApiService {
   }
 
   getCategory(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}categories`;
+    const url = `${this.API_URL}categories`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   createCategory(formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}new-category`;
+    const url = `${this.API_URL}new-category`;
     const headers = this.addTokenToHeaders();
     return this.http.post(url, formData, { headers });
   }
 
   deleteCategory(id: number): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}category/${id}`;
+    const url = `${this.API_URL}category/${id}`;
     const headers = this.addTokenToHeaders();
     return this.http.delete(url, { headers });
   }
 
   getSubCategory(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}subcategories`;
+    const url = `${this.API_URL}subcategories`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   createSubCategory(formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}new-subcategory`;
+    const url = `${this.API_URL}new-subcategory`;
     const headers = this.addTokenToHeaders();
     return this.http.post(url, formData, {headers: headers});
   }
 
   deleteSubCategory(id: number): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}subcategory/${id}`;
+    const url = `${this.API_URL}subcategory/${id}`;
     const headers = this.addTokenToHeaders();
     return this.http.delete(url, {headers: headers});
   }
 
   registerUser(formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}register-user`;
+    const url = `${this.API_URL}register-user`;
     const headers = this.addTokenToHeaders();
     return this.http.post(url, formData, { headers: headers });
   }
 
   getUsers(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}users`;
+    const url = `${this.API_URL}users`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   updateUsers(id: string, formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}user/${id}`;
+    const url = `${this.API_URL}user/${id}`;
     const headers = this.addTokenToHeaders();
     return this.http.put(url, formData, {headers: headers});
   }
 
   getAccounts(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}accounts`;
+    const url = `${this.API_URL}accounts`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   insertAccount(formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}new-accounts`;
+    const url = `${this.API_URL}new-accounts`;
     const headers = this.addTokenToHeaders();
     return this.http.post(url, formData, {headers: headers});
   }
 
   updateAccount(id: string, formData: any): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}account/${id}`;
+    const url = `${this.API_URL}account/${id}`;
     const headers = this.addTokenToHeaders();
     return this.http.put(url, formData, {headers: headers});
   }
 
   getDataProviders(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}providers`;
+    const url = `${this.API_URL}providers`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }

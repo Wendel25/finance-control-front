@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { MsgConfirmationComponent } from '../../../../../../components/msg-confirmation/msg-confirmation.component';
+import { MsgConfirmationComponent } from '../../../../../../shared/components/msg-confirmation/msg-confirmation.component';
 import { RegisterSubCategoryComponent } from './register-sub-category/register-sub-category.component';
 
 import { ApiService } from './../../../services/api.service';

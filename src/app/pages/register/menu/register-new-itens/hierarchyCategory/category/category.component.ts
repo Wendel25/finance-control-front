@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiService } from '../../../services/api.service';
 
 import { RegisterCategoryComponent } from './register-category/register-category.component';
-import { MsgConfirmationComponent } from '../../../../../../components/msg-confirmation/msg-confirmation.component';
+import { MsgConfirmationComponent } from '../../../../../../shared/components/msg-confirmation/msg-confirmation.component';
 import { SuccessService } from '../../../../../../services/success.service';
 import { ErrorService } from '../../../../../../services/error.service';
 

@@ -16,6 +16,9 @@ import { ApiService } from '../../register/menu/services/api.service';
 import { ErrorService } from '../../../services/error.service';
 import { SuccessService } from '../../../services/success.service';
 
+import { CpfPipe } from '../../../shared/pipes/cpf.pipe';
+import { PhonePipe } from '../../../shared/pipes/phone.pipe';
+
 import { ServiceProviderComponent } from './service-provider/service-provider.component';
 
 @Component({
@@ -34,6 +37,9 @@ import { ServiceProviderComponent } from './service-provider/service-provider.co
 
     CommonModule,
     HttpClientModule,
+
+    CpfPipe,
+    PhonePipe
   ],
   providers: [
     ApiService
@@ -43,7 +49,8 @@ import { ServiceProviderComponent } from './service-provider/service-provider.co
 })
 
 export class GeralProvidersComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'number_cpf', 'email', 'birth_date', 'number_phone', 'number_phone_reserve', 'localization', 'service_provider', 'status', 'edit'];
+  displayedColumns: string[] =
+    ['name', 'number_cpf', 'birth_date', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'status', 'edit'];
   dataSource = new MatTableDataSource<any>([]);
 
   dataProviders: any[] = []
@@ -78,6 +85,10 @@ export class GeralProvidersComponent implements OnInit {
 
   registerNewProvider() {
     const dialogRef = this.dialog.open(ServiceProviderComponent);
+
+    dialogRef.componentInstance.newRegisterProvider.subscribe(() => {
+      this.getData();
+    });
   }
 
   toggleActive(accounts: any) {

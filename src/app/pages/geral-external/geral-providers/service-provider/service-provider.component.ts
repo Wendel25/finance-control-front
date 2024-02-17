@@ -17,6 +17,7 @@ import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/cor
 import { ApiService } from '../../../register/menu/services/api.service';
 import { ErrorService } from '../../../../services/error.service';
 import { SuccessService } from '../../../../services/success.service';
+import { EsternalService } from '../../service/esternal.service';
 
 @Component({
   selector: 'app-service-provider',
@@ -53,32 +54,35 @@ export class ServiceProviderComponent {
   formRegisterProviderLegalPerson!: FormGroup;
   formRegisterProviderPhisicalPerson!: FormGroup;
 
-  title: string = 'Cadastrar prestador de serviço';
-
   legalPerson: string = 'Pessoa Jurídica';
   phisicalPerson: string = 'Pessoa Fisica';
 
   formLegalPerson: boolean = false
   formPhysicalPerson: boolean = true
 
-  useFirstMask: boolean = true;
+  city: string = '';
+  district: string = '';
+  address: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
     private errorService: ErrorService,
     private successService: SuccessService,
-    private dialogRef: MatDialogRef<ServiceProviderComponent>
+    private dialogRef: MatDialogRef<ServiceProviderComponent>,
+    private esternalService: EsternalService,
   ) {
     this.formRegisterProviderLegalPerson = this.formBuilder.group({
       name: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', Validators.email],
       birth_date: [''],
-      first_phone: ['', Validators.required],
-      second_phone: [''],
-      localization: ['', Validators.required],
-      service_name: ['', Validators.required],
+      number_phone: ['', Validators.required],
+      number_phone_reserve: [''],
+      cep: ['', Validators.required],
+      city: [this.city],
+      district: [this.district],
+      localization: [this.address],
+      service_provider: ['', Validators.required],
     });
 
     this.formRegisterProviderPhisicalPerson = this.formBuilder.group({
@@ -88,7 +92,10 @@ export class ServiceProviderComponent {
       state_registration: [''],
       first_phone: ['', Validators.required],
       second_phone: [''],
+      cep: ['', Validators.required],
+      city: ['', Validators.required],
       localization: ['', Validators.required],
+      district: ['', Validators.required],
       service_name: ['', Validators.required],
     });
   }
@@ -103,7 +110,65 @@ export class ServiceProviderComponent {
     }
   }
 
-  registerProviderLegalPerson() { }
+  getLocalizationByCEP(event: any){
+    const cep = event.target.value;
+
+    this.esternalService.getDataCEP(cep).subscribe(
+      (data) => {
+        const localization = data.localidade + ' - ' + data.uf
+
+        this.city = localization;
+        this.district = data.bairro;
+        this.address = data.logradouro;
+
+        this.formRegisterProviderLegalPerson.patchValue({
+          city: data.localidade + ' - ' + data.uf,
+          district: data.bairro,
+          localization: data.logradouro
+        });
+      },
+      (error) =>{
+        console.log("Erro ao buscar dados do CEP", error);
+      }
+    )
+  }
+
+  formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const formattedDay = day < 10 ? '0' + day : day;
+    const formattedMonth = month < 10 ? '0' + month : month;
+
+    return formattedDay + '/' + formattedMonth + '/' + year;
+  }
+
+  registerProviderLegalPerson() {
+    if (this.formRegisterProviderLegalPerson.valid) {
+      const formData = this.formRegisterProviderLegalPerson.value;
+
+      const birthDate = this.formatDate(formData.birth_date);
+      formData.birth_date = birthDate;
+
+      this.esternalService.registerProviders(formData).subscribe(
+        (data) =>{
+          this.successService.successRegisterProvider();
+          this.dialogRef.close();
+          this.newRegisterProvider.emit();
+        },
+        (error) =>{
+          console.log('Erro ao realizar cadastro', error);
+
+          if (error.error && error.error.error === 'o cpf informado já existe no banco de dados') {
+            this.errorService.errorRegisterProviderCPF();
+          } else {
+            this.errorService.errorRegisterProvider();
+          }
+        }
+      )
+    }
+  }
 
   registerProviderPhisicalPerson() { }
 }

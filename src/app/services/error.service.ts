@@ -91,4 +91,16 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  errorRegisterProviderCPF() {
+    this.snackBar.open(`O cpf informado já existe no banco de dados`, 'Fechar', {
+      duration: 4000,
+    });
+  }
+
+  errorRegisterProvider() {
+    this.snackBar.open(`Erro ao realizar cadastro`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

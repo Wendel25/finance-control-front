@@ -16,7 +16,7 @@ export class RegisterServiceService {
     private cookie: CookieService
   ) { }
 
-  private API_URL_LOCALHOST = environment_local.apiUrl;
+  private API_URL = environment_local.apiUrl;
 
   addTokenToHeaders() {
     const token = this.cookie.get('token');
@@ -33,25 +33,25 @@ export class RegisterServiceService {
   }
 
   getServices(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}services`;
+    const url = `${this.API_URL}services`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   getSubCategoriesByCategory(category: string): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}subcategory/${category}`;
+    const url = `${this.API_URL}subcategory/${category}`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   getBank(): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}bank`;
+    const url = `${this.API_URL}bank`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
 
   getDataByBank(bank: string): Observable<any> {
-    const url = `${this.API_URL_LOCALHOST}bank/${bank}`;
+    const url = `${this.API_URL}bank/${bank}`;
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }

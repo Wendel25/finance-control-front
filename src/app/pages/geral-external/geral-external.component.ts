@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MenuComponent } from '../../components/menu/menu.component';
+import { MenuComponent } from '../../shared/components/menu/menu.component';
 import { GeralProvidersComponent } from './geral-providers/geral-providers.component';
 import { SupplierComponent } from './supplier/supplier.component';
 

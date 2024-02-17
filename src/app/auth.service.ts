@@ -7,7 +7,6 @@ import { CanActivate, Router} from '@angular/router';
 })
 
 export class AuthService implements CanActivate {
-
   constructor(
     private cookie: CookieService,
     private router: Router
