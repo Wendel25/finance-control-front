@@ -54,7 +54,7 @@ export class RegisterQuestionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiServiceGet: ApiService,
+    private apiService: ApiService,
     private registerService: RegisterServiceService
   ) {
     this.newRegisterService = this.formBuilder.group({
@@ -83,7 +83,7 @@ export class RegisterQuestionComponent implements OnInit {
   }
 
   getCategories() {
-    this.apiServiceGet.getCategory().subscribe(
+    this.apiService.getCategory().subscribe(
       (data) => {
         this.categories = data.result
       },

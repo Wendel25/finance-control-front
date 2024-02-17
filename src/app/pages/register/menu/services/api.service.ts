@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment_local } from './../../../../environments/environments.local';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,77 +12,101 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(
     private http: HttpClient,
-  ) { }
+    private router: Router,
+    private cookie: CookieService
+  ) {}
 
-  private API_URL_LOCALHOST = 'http://localhost:3000/api/';
+  private API_URL_LOCALHOST = environment_local.apiUrl;
+
+  addTokenToHeaders() {
+    const token = this.cookie.get('token');
+
+    if (!token) {
+      this.router.navigate(['/'])
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return headers
+  }
 
   getCategory(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}categories`;
-    return this.http.get(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
   }
 
   createCategory(formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}new-category`;
-    return this.http.post(url, { category: formData.category });
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, { headers });
   }
 
   deleteCategory(id: number): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}category/${id}`;
-    return this.http.delete(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.delete(url, { headers });
   }
 
   getSubCategory(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}subcategories`;
-    return this.http.get(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
   }
 
   createSubCategory(formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}new-subcategory`;
-    return this.http.post(url, { category: formData.category, subCategory: formData.subCategory });
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, {headers: headers});
   }
 
   deleteSubCategory(id: number): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}subcategory/${id}`;
-    return this.http.delete(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.delete(url, {headers: headers});
   }
 
   registerUser(formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}register-user`;
-    return this.http.post(url, {
-      name: formData.nameNewUser,
-      nameRBX: formData.nameRBXNewUser,
-      email: formData.emailNewUser,
-      password: formData.passwordNewUser
-    });
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, { headers: headers });
   }
 
   getUsers(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}users`;
-    return this.http.get(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
   }
 
   updateUsers(id: string, formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}user/${id}`;
-    return this.http.put(url, formData);
+    const headers = this.addTokenToHeaders();
+    return this.http.put(url, formData, {headers: headers});
   }
 
   getAccounts(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}accounts`;
-    return this.http.get(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
   }
 
   insertAccount(formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}new-accounts`;
-    return this.http.post(url, formData);
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, {headers: headers});
   }
 
   updateAccount(id: string, formData: any): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}account/${id}`;
-    return this.http.put(url, formData);
+    const headers = this.addTokenToHeaders();
+    return this.http.put(url, formData, {headers: headers});
   }
 
   getDataProviders(): Observable<any> {
     const url = `${this.API_URL_LOCALHOST}providers`;
-    return this.http.get(url);
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
   }
 }

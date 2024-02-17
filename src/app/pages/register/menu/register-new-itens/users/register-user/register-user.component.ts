@@ -49,10 +49,10 @@ export class RegisterUserComponent {
     private dialogRef: MatDialogRef<RegisterUserComponent>
   ){
     this.registerNewUser = this.formBuilder.group({
-      nameNewUser: ['', Validators.required],
-      nameRBXNewUser: ['', Validators.required],
-      emailNewUser: ['', [Validators.required, Validators.email]],
-      passwordNewUser: [this.password, Validators.required]
+      name: ['', Validators.required],
+      nameRBX: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: [this.password, Validators.required]
     });
   }
 

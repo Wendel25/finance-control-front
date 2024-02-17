@@ -85,4 +85,10 @@ export class ErrorService {
       duration: 4000,
     });
   }
+
+  UserDisabled() {
+    this.snackBar.open(`Usuário desativado, entre em contato com o suporte para mais informações`, 'Fechar', {
+      duration: 4000,
+    });
+  }
 }

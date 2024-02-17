@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +32,7 @@ import { ErrorService } from '../../services/error.service';
   styleUrl: './login.component.scss'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup
 
   constructor(
@@ -46,6 +46,11 @@ export class LoginComponent {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.cookieService.delete('token');
+    this.cookieService.delete('name');
   }
 
   submitLoginForm() {
@@ -68,7 +73,10 @@ export class LoginComponent {
           } else if (error.error && error.error.error === 'Email incorreto') {
             this.errorService.loginEmail();
 
-          }else{
+          }else if (error.error && error.error.error === 'Usuário desativado') {
+            this.errorService.UserDisabled();
+
+          } else{
             this.errorService.authLogin();
           }
         }

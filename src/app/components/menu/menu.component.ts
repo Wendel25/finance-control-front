@@ -40,8 +40,8 @@ export class MenuComponent {
   }
 
   logoutNavigation(){
-    this.cookieService.delete('name');
     this.cookieService.delete('token');
+    this.cookieService.delete('name');
 
     this.router.navigate(['']);
   }
