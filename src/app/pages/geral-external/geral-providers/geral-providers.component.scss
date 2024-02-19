@@ -29,5 +29,34 @@ mat-paginator{
   text-align: center;
 }
 
+::ng-deep .mat-mdc-paginator-range-label,
+::ng-deep .mat-mdc-paginator-icon{
+  display: none !important;
+}
+
+.content-btn{
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.btn-visible{
+  border: 0;
+  background-color: #026502;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-visible:hover{
+  background-color: #06d006;
+  color: #000;
+}
+
 @media (max-width: 768px) {
 }

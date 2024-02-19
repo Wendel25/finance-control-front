@@ -103,10 +103,4 @@ export class ApiService {
     const headers = this.addTokenToHeaders();
     return this.http.put(url, formData, {headers: headers});
   }
-
-  getDataProviders(): Observable<any> {
-    const url = `${this.API_URL}providers`;
-    const headers = this.addTokenToHeaders();
-    return this.http.get(url, { headers: headers });
-  }
 }

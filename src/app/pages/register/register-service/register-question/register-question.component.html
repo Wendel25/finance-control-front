@@ -57,8 +57,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Prestador</mat-label>
         <mat-select disableRipple formControlName="service_provider">
-          <mat-option>
-
+          <mat-option *ngFor="let option of providers" [value]="option.name">
+            {{ option.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

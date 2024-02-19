@@ -55,4 +55,10 @@ export class RegisterServiceService {
     const headers = this.addTokenToHeaders();
     return this.http.get(url, { headers: headers });
   }
+
+  getProviders(): Observable<any>{
+    const url = `${this.API_URL}provider`;
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
+  }
 }

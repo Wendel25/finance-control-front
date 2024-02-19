@@ -54,8 +54,8 @@ export class ServiceProviderComponent {
   formRegisterProviderLegalPerson!: FormGroup;
   formRegisterProviderPhisicalPerson!: FormGroup;
 
-  legalPerson: string = 'Pessoa Jurídica';
-  phisicalPerson: string = 'Pessoa Fisica';
+  legalPerson: string = 'Pessoa Fisica';
+  phisicalPerson: string = 'Pessoa Jurídica';
 
   formLegalPerson: boolean = false
   formPhysicalPerson: boolean = true
@@ -74,7 +74,6 @@ export class ServiceProviderComponent {
     this.formRegisterProviderLegalPerson = this.formBuilder.group({
       name: ['', Validators.required],
       cpf: ['', Validators.required],
-      email: ['', Validators.email],
       birth_date: [''],
       number_phone: ['', Validators.required],
       number_phone_reserve: [''],
@@ -90,13 +89,13 @@ export class ServiceProviderComponent {
       fantasy_name: [''],
       cnpj: ['', Validators.required],
       state_registration: [''],
-      first_phone: ['', Validators.required],
-      second_phone: [''],
+      number_phone: ['', Validators.required],
+      number_phone_reserve: [''],
       cep: ['', Validators.required],
-      city: ['', Validators.required],
-      localization: ['', Validators.required],
-      district: ['', Validators.required],
-      service_name: ['', Validators.required],
+      city: [this.city],
+      district: [this.district],
+      localization: [this.address],
+      service_provider: ['', Validators.required],
     });
   }
 
@@ -110,7 +109,7 @@ export class ServiceProviderComponent {
     }
   }
 
-  getLocalizationByCEP(event: any){
+  getLocalizationByCEP(event: any) {
     const cep = event.target.value;
 
     this.esternalService.getDataCEP(cep).subscribe(
@@ -126,8 +125,14 @@ export class ServiceProviderComponent {
           district: data.bairro,
           localization: data.logradouro
         });
+
+        this.formRegisterProviderPhisicalPerson.patchValue({
+          city: data.localidade + ' - ' + data.uf,
+          district: data.bairro,
+          localization: data.logradouro
+        });
       },
-      (error) =>{
+      (error) => {
         console.log("Erro ao buscar dados do CEP", error);
       }
     )
@@ -152,12 +157,12 @@ export class ServiceProviderComponent {
       formData.birth_date = birthDate;
 
       this.esternalService.registerProviders(formData).subscribe(
-        (data) =>{
+        (data) => {
           this.successService.successRegisterProvider();
           this.dialogRef.close();
           this.newRegisterProvider.emit();
         },
-        (error) =>{
+        (error) => {
           console.log('Erro ao realizar cadastro', error);
 
           if (error.error && error.error.error === 'o cpf informado já existe no banco de dados') {
@@ -170,5 +175,21 @@ export class ServiceProviderComponent {
     }
   }
 
-  registerProviderPhisicalPerson() { }
+  registerProviderPhisicalPerson() {
+    if (this.formRegisterProviderPhisicalPerson.valid) {
+      const formData = this.formRegisterProviderPhisicalPerson.value;
+
+      this.esternalService.registerProvidersLegal(formData).subscribe(
+        (data) => {
+          this.successService.successRegisterProvider();
+          this.dialogRef.close();
+          this.newRegisterProvider.emit();
+        },
+        (error) => {
+          console.log('Erro ao realizar cadastro', error);
+          this.errorService.errorRegisterProvider();
+        }
+      )
+    }
+  }
 }

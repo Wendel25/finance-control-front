@@ -19,8 +19,8 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email">
+        <mat-label>Serviço Prestado</mat-label>
+        <input matInput formControlName="service_provider">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -66,13 +66,6 @@
         <input matInput formControlName="localization" [value]="address">
       </mat-form-field>
     </div>
-
-    <div class="fields">
-      <mat-form-field appearance="outline">
-        <mat-label>Serviço Prestado</mat-label>
-        <input matInput formControlName="service_provider">
-      </mat-form-field>
-    </div>
   </form>
 
   <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterProviderLegalPerson.valid" (click)="registerProviderLegalPerson()">Cadastrar</button>
@@ -113,12 +106,12 @@
     <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Celular</mat-label>
-        <input matInput formControlName="first_phone" type="tel" mask="(00) 00000-0000">
+        <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Telefone Reserva</mat-label>
-        <input matInput formControlName="second_phone" mask="(00) 0000-0000">
+        <input matInput formControlName="number_phone_reserve" mask="(00) 0000-0000">
       </mat-form-field>
     </div>
 
@@ -149,7 +142,7 @@
     <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Serviço Prestado</mat-label>
-        <input matInput formControlName="service_name">
+        <input matInput formControlName="service_provider">
       </mat-form-field>
     </div>
   </form>

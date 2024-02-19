@@ -45,7 +45,7 @@ export class SuccessService {
   }
 
   successUpdateUser(){
-    this.snackBar.open(`Usuário atualizado com sucesso`, 'Fechar', {
+    this.snackBar.open(`Cadastro atualizado com sucesso`, 'Fechar', {
       duration: 4000,
     });
   }

@@ -35,7 +35,7 @@ import { RegisterServiceService } from '../service/register-service.service';
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     DatePipe,
     ApiService,
-    RegisterServiceService
+    RegisterServiceService,
   ],
   templateUrl: './register-question.component.html',
   styleUrl: '../../style-add.component.scss'
@@ -51,11 +51,12 @@ export class RegisterQuestionComponent implements OnInit {
   banks: any[] = [];
   account: any[] = [];
   agency: any[] = [];
+  providers: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private registerService: RegisterServiceService
+    private registerService: RegisterServiceService,
   ) {
     this.newRegisterService = this.formBuilder.group({
       service_name: ['', Validators.required],
@@ -80,6 +81,7 @@ export class RegisterQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
     this.getBank();
+    this.getProvider();
   }
 
   getCategories() {
@@ -101,7 +103,7 @@ export class RegisterQuestionComponent implements OnInit {
         this.subCategories = data.subcategory
       },
       (error) => {
-        console.log('Erro ao buscar sub categorias');
+        console.log('Erro ao buscar sub categorias', error);
       }
     )
   }
@@ -132,9 +134,20 @@ export class RegisterQuestionComponent implements OnInit {
         }
       },
       (error) => {
-        console.log('Erro ao buscar dados do banco');
+        console.log('Erro ao buscar dados do banco', error);
       }
     );
+  }
+
+  getProvider(){
+    this.registerService.getProviders().subscribe(
+      (data) =>{
+        this.providers = data.results
+      },
+      (error) => {
+        console.log('Erro ao buscar dados do banco', error);
+      }
+    )
   }
 
   formPayament = [

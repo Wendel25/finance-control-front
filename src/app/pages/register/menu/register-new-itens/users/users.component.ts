@@ -101,12 +101,7 @@ export class UsersComponent implements OnInit {
 
   statusUser(user: any) {
     const id = user.id;
-    const formData = {
-      name: user.name,
-      nameRBX: user.nameRBX,
-      email: user.email,
-      active: user.active
-    }
+    const formData = user
 
     this.apiService.updateUsers(id, formData).subscribe(
       (data) => {

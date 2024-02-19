@@ -42,4 +42,34 @@ export class EsternalService {
     const headers = this.addTokenToHeaders();
     return this.http.post(url, formData, { headers: headers });
   }
+
+  getDataProviders(page: number, pageSize: number): Observable<any> {
+    const url = `${this.API_URL}providers?page=${page}&pageSize=${pageSize}`;
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
+  }
+
+  registerProvidersLegal(formData: any): Observable<any> {
+    const url = `${this.API_URL}new-provider-legal`;
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, { headers: headers });
+  }
+
+  getDataProvidersLegal(page: number, pageSize: number): Observable<any> {
+    const url = `${this.API_URL}providers-legal?page=${page}&pageSize=${pageSize}`;
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
+  }
+
+  updateProviders(id: string, formData: any): Observable<any> {
+    const url = `${this.API_URL}/update-provider/${id}`;
+    const headers = this.addTokenToHeaders();
+    return this.http.put(url, formData, { headers: headers });
+  }
+
+  updateProvidersLegal(id: string, formData: any): Observable<any> {
+    const url = `${this.API_URL}update-provider-legal/${id}`;
+    const headers = this.addTokenToHeaders();
+    return this.http.put(url, formData, { headers: headers });
+  }
 }

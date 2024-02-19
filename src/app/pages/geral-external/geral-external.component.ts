@@ -8,7 +8,7 @@ import { SupplierComponent } from './supplier/supplier.component';
   selector: 'app-geral-external',
   standalone: true,
   imports: [
-    SupplierComponent,
+  SupplierComponent,
     MatTabsModule,
     MenuComponent,
     GeralProvidersComponent
