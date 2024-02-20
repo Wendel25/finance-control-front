@@ -62,7 +62,7 @@ export class EsternalService {
   }
 
   updateProviders(id: string, formData: any): Observable<any> {
-    const url = `${this.API_URL}/update-provider/${id}`;
+    const url = `${this.API_URL}update-provider/${id}`;
     const headers = this.addTokenToHeaders();
     return this.http.put(url, formData, { headers: headers });
   }

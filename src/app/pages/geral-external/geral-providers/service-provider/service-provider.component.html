@@ -19,8 +19,12 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Serviço Prestado</mat-label>
-        <input matInput formControlName="service_provider">
+        <mat-label>Grupo</mat-label>
+        <mat-select disableRipple formControlName="group_name">
+          <mat-option *ngFor="let option of groups" [value]="option.group">
+            {{ option.group }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -55,21 +59,45 @@
       </mat-form-field>
     </div>
 
-    <div class="fields">
-      <mat-form-field appearance="outline">
+    <div class="content-fields">
+      <mat-form-field appearance="outline" style="width: 30%;">
         <mat-label>Bairro</mat-label>
         <input matInput formControlName="district" [value]="district">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" style="width: 43%;">
         <mat-label>Endereço</mat-label>
         <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 15%;">
+        <mat-label>Nº</mat-label>
+        <input matInput formControlName="number_localization">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Serviço Prestado</mat-label>
+        <input matInput formControlName="service_provider">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Observação</mat-label>
+        <textarea matInput formControlName="observation"></textarea>
       </mat-form-field>
     </div>
   </form>
 
   <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterProviderLegalPerson.valid" (click)="registerProviderLegalPerson()">Cadastrar</button>
-  <br><br>
+
+  <div *ngIf="controlBarLoading">
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+  </div>
 </div>
 
 <div class="content" *ngIf="formLegalPerson">
@@ -105,6 +133,17 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
+        <mat-label>Grupo</mat-label>
+        <mat-select disableRipple formControlName="group_name">
+          <mat-option *ngFor="let option of groups" [value]="option.group">
+            {{ option.group }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
         <mat-label>Celular</mat-label>
         <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
       </mat-form-field>
@@ -127,15 +166,20 @@
       </mat-form-field>
     </div>
 
-    <div class="fields">
-      <mat-form-field appearance="outline">
+    <div class="content-fields">
+      <mat-form-field appearance="outline" style="width: 30%;">
         <mat-label>Bairro</mat-label>
         <input matInput formControlName="district" [value]="district">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" style="width: 43%;">
         <mat-label>Endereço</mat-label>
         <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 15%;">
+        <mat-label>Nº</mat-label>
+        <input matInput formControlName="number_localization">
       </mat-form-field>
     </div>
 
@@ -145,8 +189,21 @@
         <input matInput formControlName="service_provider">
       </mat-form-field>
     </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Observação</mat-label>
+        <textarea matInput formControlName="observation"></textarea>
+      </mat-form-field>
+    </div>
   </form>
 
   <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterProviderPhisicalPerson.valid" (click)="registerProviderPhisicalPerson()">Cadastrar</button>
-  <br><br>
+  <br>
+
+  <div *ngIf="controlBarLoading">
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+  </div>
 </div>

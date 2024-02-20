@@ -16,13 +16,17 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Data Nascimento</mat-label>
-        <input matInput formControlName="birth_date">
+        <mat-label>Grupo</mat-label>
+        <mat-select disableRipple formControlName="group_name">
+          <mat-option *ngFor="let option of groups" [value]="option.group">
+            {{ option.group }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Serviço prestado</mat-label>
-        <input matInput formControlName="service_provider">
+        <mat-label>Data Nascimento</mat-label>
+        <input matInput formControlName="birth_date">
       </mat-form-field>
     </div>
 
@@ -50,15 +54,27 @@
       </mat-form-field>
     </div>
 
-    <div class="fields">
-      <mat-form-field appearance="outline">
+    <div class="content-fields">
+      <mat-form-field appearance="outline" style="width: 30%;">
         <mat-label>Bairro</mat-label>
         <input matInput formControlName="district">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" style="width: 42%;">
         <mat-label>Endereço</mat-label>
         <input matInput formControlName="localization">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 15%;">
+        <mat-label>Número</mat-label>
+        <input matInput formControlName="number_localization" >
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Serviço prestado</mat-label>
+        <input matInput formControlName="service_provider">
       </mat-form-field>
     </div>
   </div>

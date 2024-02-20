@@ -27,6 +27,11 @@
       <td mat-cell *matCellDef="let element">{{ element.cpf | cpf }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="group_name">
+      <th mat-header-cell *matHeaderCellDef> Grupo </th>
+      <td mat-cell *matCellDef="let element">{{ element.group_name }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="birth_date">
       <th mat-header-cell *matHeaderCellDef [style.display]="showPhoneReserveColumn ? 'table-cell' : 'none'"> Nascimento </th>
       <td mat-cell *matCellDef="let element" [style.display]="showPhoneReserveColumn ? 'table-cell' : 'none'"> {{element.birth_date || '- -'}} </td>
@@ -44,7 +49,7 @@
 
     <ng-container matColumnDef="cep">
       <th mat-header-cell *matHeaderCellDef> CEP </th>
-      <td mat-cell *matCellDef="let element"> {{element.cep}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.cep | cep}} </td>
     </ng-container>
 
     <ng-container matColumnDef="city">
@@ -59,12 +64,20 @@
 
     <ng-container matColumnDef="localization">
       <th mat-header-cell *matHeaderCellDef> Endereço </th>
-      <td mat-cell *matCellDef="let element"> {{element.localization}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.localization + ', ' + element.number_localization}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="service_provider">
+    <ng-container matColumnDef="service_provider" >
       <th mat-header-cell *matHeaderCellDef> Serviço </th>
-      <td mat-cell *matCellDef="let element" matTooltip="{{element.service_provider}}"> {{element.service_provider | limitCaracter: 20}} </td>
+      <td mat-cell *matCellDef="let element" matTooltip="{{element.service_provider}}" style="cursor: pointer;"> {{element.service_provider | limitCaracter: 20}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef> Obs. </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" matTooltip="Observações" (click)="observationProvider(element)">
+          <mat-icon>visibility</mat-icon>
+        </button>
     </ng-container>
 
     <ng-container matColumnDef="status">
@@ -114,7 +127,7 @@
 
     <ng-container matColumnDef="fantasy_name">
       <th mat-header-cell *matHeaderCellDef [style.display]="showPhoneReserveColumnTwo ? 'table-cell' : 'none'"> Nome Fantasia </th>
-      <td mat-cell *matCellDef="let element"[style.display]="showPhoneReserveColumnTwo ? 'table-cell' : 'none'"> {{element.fantasy_name || '- -'}} </td>
+      <td mat-cell *matCellDef="let element" [style.display]="showPhoneReserveColumnTwo ? 'table-cell' : 'none'"> {{element.fantasy_name || '- -'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="cnpj">
@@ -122,9 +135,14 @@
       <td mat-cell *matCellDef="let element"> {{element.cnpj | cnpj}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="group_name">
+      <th mat-header-cell *matHeaderCellDef> Grupo </th>
+      <td mat-cell *matCellDef="let element"> {{element.group_name}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="state_registration">
-      <th mat-header-cell *matHeaderCellDef> Inscrição Estadual </th>
-      <td mat-cell *matCellDef="let element"> {{element.state_registration}} </td>
+      <th mat-header-cell *matHeaderCellDef [style.display]="showPhoneReserveColumnTwo ? 'table-cell' : 'none'"> Inscrição Estadual </th>
+      <td mat-cell *matCellDef="let element" [style.display]="showPhoneReserveColumnTwo ? 'table-cell' : 'none'"> {{element.state_registration}} </td>
     </ng-container>
 
     <ng-container matColumnDef="number_phone">
@@ -139,7 +157,7 @@
 
     <ng-container matColumnDef="cep">
       <th mat-header-cell *matHeaderCellDef> CEP </th>
-      <td mat-cell *matCellDef="let element"> {{element.cep}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.cep | cep}} </td>
     </ng-container>
 
     <ng-container matColumnDef="city">
@@ -154,12 +172,20 @@
 
     <ng-container matColumnDef="localization">
       <th mat-header-cell *matHeaderCellDef> Endereço </th>
-      <td mat-cell *matCellDef="let element"> {{element.localization}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.localization + ', ' + element.number_localization}} </td>
     </ng-container>
 
     <ng-container matColumnDef="service_provider">
       <th mat-header-cell *matHeaderCellDef> Serviço </th>
-      <td mat-cell *matCellDef="let element"> {{element.service_provider}} </td>
+      <td mat-cell *matCellDef="let element" matTooltip="{{element.service_provider}}" style="cursor: pointer;"> {{element.service_provider | limitCaracter: 20}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef> Obs. </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" matTooltip="Observações" (click)="observationProviderLegal(element)">
+          <mat-icon>visibility</mat-icon>
+        </button>
     </ng-container>
 
     <ng-container matColumnDef="status_">

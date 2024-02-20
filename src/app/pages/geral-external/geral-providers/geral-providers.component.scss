@@ -59,4 +59,10 @@ mat-paginator{
 }
 
 @media (max-width: 768px) {
+  .content{
+    margin: 10% 3%;
+    padding: 3%;
+    width: 87%;
+    overflow: auto;
+  }
 }

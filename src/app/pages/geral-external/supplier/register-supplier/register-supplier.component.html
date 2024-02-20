@@ -1,0 +1,76 @@
+<div class="content">
+  <div class="header">
+    <h2 mat-dialog-title>Cadastrar Fornecedor</h2>
+  </div>
+
+  <form [formGroup]="formRegisterSupplier">
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Fornecedor</mat-label>
+        <input matInput formControlName="supplier">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Pessoa Líder</mat-label>
+        <input matInput formControlName="leader_person">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>CNPJ</mat-label>
+        <input matInput type="text" formControlName="cnpj" mask="00.000.000/0000-00">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone Reserva</mat-label>
+        <input matInput formControlName="number_phone_reserve" mask="(00) 0000-0000">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" type="text" mask="00000-000" (blur)="getLocalizationByCEP($event)">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="city" [value]="city">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="district" [value]="district">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
+      </mat-form-field>
+    </div>
+  </form>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterSupplier.valid" (click)="registerProviderLegalPerson()">Cadastrar</button>
+  <br><br>
+
+  <div *ngIf="controlBarLoading">
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+  </div>
+</div>

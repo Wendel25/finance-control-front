@@ -1,5 +1,5 @@
 .content{
-  width: 600px;
+  width: 700px;
 }
 
 .fields{
@@ -21,7 +21,13 @@ mat-form-field{
 
 .btn{
   width: 94%;
-  margin: 0 3%;
+  margin: 0 2%;
+}
+
+.content-fields{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

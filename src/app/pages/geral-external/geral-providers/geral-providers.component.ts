@@ -20,10 +20,13 @@ import { CpfPipe } from '../../../shared/pipes/cpf.pipe';
 import { PhonePipe } from '../../../shared/pipes/phone.pipe';
 import { LimitCaracterPipe } from '../../../shared/pipes/limit-caracter.pipe';
 import { CnpjPipe } from '../../../shared/pipes/cnpj.pipe';
+import { CepPipe } from '../../../shared/pipes/cep.pipe';
 
 import { ServiceProviderComponent } from './service-provider/service-provider.component';
 import { EditProviderComponent } from './edit-provider/edit-provider.component';
 import { GeralProvidersLegalComponent } from './geral-providers-legal/geral-providers-legal.component';
+import { ObservationComponent } from './observation/observation.component';
+import { ObservationPersonLegalComponent } from './observation-person-legal/observation-person-legal.component';
 
 @Component({
   selector: 'app-geral-providers',
@@ -46,6 +49,7 @@ import { GeralProvidersLegalComponent } from './geral-providers-legal/geral-prov
     PhonePipe,
     LimitCaracterPipe,
     CnpjPipe,
+    CepPipe
   ],
   providers: [
     EsternalService
@@ -56,11 +60,11 @@ import { GeralProvidersLegalComponent } from './geral-providers-legal/geral-prov
 
 export class GeralProvidersComponent implements OnInit {
   displayedColumns: string[] =
-    ['name', 'number_cpf', 'birth_date', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'status', 'edit'];
+    ['name', 'number_cpf', 'group_name', 'birth_date', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'observation', 'status', 'edit'];
   dataSource = new MatTableDataSource<any>([]);
 
   displayedColumnsLegal: string[] =
-    ['social_reason', 'fantasy_name', 'cnpj', 'state_registration', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'status_', 'edit_'];
+    ['social_reason', 'fantasy_name', 'cnpj', 'group_name', 'state_registration', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'observation', 'status_', 'edit_'];
   dataSourceLegal = new MatTableDataSource<any>([]);
 
   dataProviders: any[] = []
@@ -143,6 +147,27 @@ export class GeralProvidersComponent implements OnInit {
     });
   }
 
+  observationProvider(provider: any) {
+    const dialogRef = this.dialog.open(ObservationComponent, {
+      data: provider
+    });
+
+    dialogRef.componentInstance.newObservation.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  observationProviderLegal(provider: any) {
+    const dialogRef = this.dialog.open(ObservationPersonLegalComponent, {
+      data: provider
+    });
+
+    dialogRef.componentInstance.newObservationLegal.subscribe(() => {
+      this.getDataProvidersLegal();
+    });
+  }
+
+
   editProviderLegal(provider: any) {
     const dialogRef = this.dialog.open(GeralProvidersLegalComponent, {
       data: provider
@@ -202,7 +227,7 @@ export class GeralProvidersComponent implements OnInit {
     const style = document.documentElement.style;
   }
 
-  togglePhoneReserveColumnTwo(){
+  togglePhoneReserveColumnTwo() {
     this.showPhoneReserveColumnTwo = !this.showPhoneReserveColumnTwo;
     const style = document.documentElement.style;
   }

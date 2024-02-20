@@ -1,0 +1,13 @@
+<div class="content">
+  <form [formGroup]="formObservation">
+    <h2 mat-dialog-title>Observação</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Observação</mat-label>
+      <textarea matInput formControlName="observation" style="height: 200px;"></textarea>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button color="accent" (click)="registerObs()">Salvar</button>
+  <br><br>
+</div>

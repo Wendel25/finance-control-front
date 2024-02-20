@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ApiService } from '../../../register/menu/services/api.service';
 import { ErrorService } from '../../../../services/error.service';
@@ -23,6 +24,7 @@ import { EsternalService } from '../../service/esternal.service';
   selector: 'app-service-provider',
   standalone: true,
   imports: [
+    MatProgressBarModule,
     NgxMaskDirective,
     NgxMaskPipe,
     MatDatepickerModule,
@@ -59,6 +61,7 @@ export class ServiceProviderComponent {
 
   formLegalPerson: boolean = false
   formPhysicalPerson: boolean = true
+  controlBarLoading: boolean = false
 
   city: string = '';
   district: string = '';
@@ -74,6 +77,7 @@ export class ServiceProviderComponent {
     this.formRegisterProviderLegalPerson = this.formBuilder.group({
       name: ['', Validators.required],
       cpf: ['', Validators.required],
+      group_name: [''],
       birth_date: [''],
       number_phone: ['', Validators.required],
       number_phone_reserve: [''],
@@ -81,7 +85,9 @@ export class ServiceProviderComponent {
       city: [this.city],
       district: [this.district],
       localization: [this.address],
+      number_localization: [''],
       service_provider: ['', Validators.required],
+      observation: [''],
     });
 
     this.formRegisterProviderPhisicalPerson = this.formBuilder.group({
@@ -89,15 +95,38 @@ export class ServiceProviderComponent {
       fantasy_name: [''],
       cnpj: ['', Validators.required],
       state_registration: [''],
+      group_name: [''],
       number_phone: ['', Validators.required],
       number_phone_reserve: [''],
       cep: ['', Validators.required],
       city: [this.city],
       district: [this.district],
       localization: [this.address],
+      number_localization: [''],
       service_provider: ['', Validators.required],
+      observation: ['']
     });
   }
+
+  groups = [
+    { group: 'Camila Ribeiro Moreno - RURAL' },
+    { group: 'Jonathan de Camargo - RURAL' },
+    { group: 'Camila Ribeiro Moreno - PF' },
+    { group: 'Jonathan de Camargo - PF' },
+    { group: 'OAI LTDA' },
+    { group: 'OAI LTDA - GNP' },
+    { group: 'Over All' },
+    { group: 'Over All - GNP' },
+    { group: 'CRM SERVIÇOS' },
+    { group: 'CRM SERVIÇOS - GNP' },
+    { group: 'Lonca' },
+    { group: 'Lonca - GNP' },
+    { group: 'Camargo Holding' },
+    { group: 'Unlimited' },
+    { group: 'Unlimited - GNP' },
+    { group: 'Terceiros' },
+    { group: 'Outros' },
+  ]
 
   changeForm(event: MatSlideToggleChange) {
     if (event.checked === true) {
@@ -110,11 +139,12 @@ export class ServiceProviderComponent {
   }
 
   getLocalizationByCEP(event: any) {
+    this.controlBarLoading = true;
     const cep = event.target.value;
 
     this.esternalService.getDataCEP(cep).subscribe(
       (data) => {
-        const localization = data.localidade + ' - ' + data.uf
+        const localization = data.localidade + ' - ' + data.uf;
 
         this.city = localization;
         this.district = data.bairro;
@@ -131,8 +161,11 @@ export class ServiceProviderComponent {
           district: data.bairro,
           localization: data.logradouro
         });
+
+        this.controlBarLoading = false;
       },
       (error) => {
+        this.controlBarLoading = false;
         console.log("Erro ao buscar dados do CEP", error);
       }
     )
