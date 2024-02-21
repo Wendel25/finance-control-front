@@ -17,11 +17,15 @@ import { ErrorService } from '../../../services/error.service';
 import { SuccessService } from '../../../services/success.service';
 import { RegisterSupplierComponent } from './register-supplier/register-supplier.component';
 import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
+import { ObservationLegalComponent } from './observation-legal/observation-legal.component';
+import { ObservationComponent } from './observation/observation.component';
+import { EditSupplierLegalComponent } from './edit-supplier-legal/edit-supplier-legal.component';
 
 import { CpfPipe } from '../../../shared/pipes/cpf.pipe';
 import { PhonePipe } from '../../../shared/pipes/phone.pipe';
 import { LimitCaracterPipe } from '../../../shared/pipes/limit-caracter.pipe';
 import { CnpjPipe } from '../../../shared/pipes/cnpj.pipe';
+import { CepPipe } from '../../../shared/pipes/cep.pipe';
 
 @Component({
   selector: 'app-supplier',
@@ -44,6 +48,7 @@ import { CnpjPipe } from '../../../shared/pipes/cnpj.pipe';
     PhonePipe,
     LimitCaracterPipe,
     CnpjPipe,
+    CepPipe
   ],
   providers: [
     EsternalService
@@ -53,13 +58,20 @@ import { CnpjPipe } from '../../../shared/pipes/cnpj.pipe';
 })
 
 export class SupplierComponent {
-  displayedColumns: string[] = ['company', 'responsible', 'cnpj', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'address', 'status', 'edit'];
+  displayedColumns: string[] = ['name', 'cpf', 'group_name', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'address', 'localization', 'service_provider', 'observation', 'status', 'edit'];
   dataSource = new MatTableDataSource<any>([]);
 
+  displayedColumnsLegal: string[] = ['social_reason', 'fantasy_name', 'cnpj', 'state_registration', 'group_name', 'number_phone', 'number_phone_reserve', 'cep', 'city', 'district', 'localization', 'service_provider', 'observation', 'status_', 'edit_'];
+  dataSourceLegal = new MatTableDataSource<any>([]);
+
   dataSupplier: any[] = []
+  dataSupplierLegal: any[] = []
 
   page: number = 1;
   pageSize: number = 15;
+
+  showColumn: boolean = false;
+  showColumnTwo: boolean = false;
 
   constructor(
     private apiService: EsternalService,
@@ -70,9 +82,19 @@ export class SupplierComponent {
 
   ngOnInit(): void {
     this.getData();
+    this.getDataProvidersLegal();
   }
 
   getData() {
+    this.apiService.getDataSupplier(this.page, this.pageSize).subscribe(
+      (data) => {
+        this.dataSupplier = data.results;
+        this.dataSource.data = this.dataSupplier;
+      },
+      (error) => {
+        console.log("Erro ao buscar dados", error);
+      }
+    )
   }
 
   onPageChange(event: PageEvent) {
@@ -86,13 +108,27 @@ export class SupplierComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  applyFilterTwo(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceLegal.filter = filterValue.trim().toLowerCase();
+  }
+
   registerNewSupplier() {
-    const dialogRef = this.dialog.open(RegisterSupplierComponent)
+    const dialogRef = this.dialog.open(RegisterSupplierComponent);
+
+    dialogRef.componentInstance.newRegisterSupplier.subscribe(() => {
+      this.getData();
+      this.getDataProvidersLegal();
+    });
   }
 
   editSupplier(supplier: any) {
     const dialogRef = this.dialog.open(EditSupplierComponent, {
       data: supplier
+    })
+
+    dialogRef.componentInstance.updateSupplier.subscribe(() => {
+      this.getData();
     })
   }
 
@@ -106,5 +142,95 @@ export class SupplierComponent {
     const id = activeSupplier.id
     const formData = activeSupplier
 
+    this.apiService.updateSupplier(id, formData).subscribe(
+      (data) => {
+        this.successService.successUpdateUser();
+        this.getData();
+      },
+      (error) => {
+        console.log('Erro ao atualizar cadastro', error);
+        this.errorService.errorUpdateUser()
+      }
+    )
+  }
+
+  observation(supplier: any) {
+    const dialogRef = this.dialog.open(ObservationComponent, {
+      data: supplier
+    });
+
+    dialogRef.componentInstance.newObservation.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  getDataProvidersLegal(){
+    this.apiService.getDataSupplierLegal(this.page, this.pageSize).subscribe(
+      (data) => {
+        this.dataSupplierLegal = data.results;
+        this.dataSourceLegal.data = this.dataSupplierLegal;
+      },
+      (error) => {
+        console.log("Erro ao buscar dados", error);
+      }
+    )
+  };
+
+  onPageChangeTwo(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.getDataProvidersLegal();
+  }
+
+  toggleActiveTWO(accounts: any) {
+    accounts.active = accounts.active === 1 ? 0 : 1;
+    accounts.active = accounts.active.toString();
+    this.statusEventTWO(accounts);
+  }
+
+  statusEventTWO(activeProvider: any) {
+    const id = activeProvider.id
+    const formData = activeProvider
+
+    this.apiService.updateSupplierLegal(id, formData).subscribe(
+      (data) => {
+        this.successService.successUpdateUser();
+        this.getDataProvidersLegal();
+      },
+      (error) => {
+        console.log('Erro ao atualizar cadastro', error);
+        this.errorService.errorUpdateUser()
+      }
+    )
+  }
+
+  observationProviderLegal(provider: any) {
+    const dialogRef = this.dialog.open(ObservationLegalComponent, {
+      data: provider
+    });
+
+    dialogRef.componentInstance.newObservationLegal.subscribe(() => {
+      this.getDataProvidersLegal();
+    });
+  }
+
+  editProviderLegal(provider: any) {
+    const dialogRef = this.dialog.open(EditSupplierLegalComponent, {
+      data: provider
+    });
+
+    dialogRef.componentInstance.updateSupplierLegal.subscribe(() => {
+      this.getDataProvidersLegal();
+    });
+  }
+
+  togglePhoneReserveColumn() {
+    this.showColumn = !this.showColumn;
+    const style = document.documentElement.style;
+  }
+
+  togglePhoneReserveColumnTwo() {
+    this.showColumnTwo = !this.showColumnTwo;
+    const style = document.documentElement.style;
   }
 }

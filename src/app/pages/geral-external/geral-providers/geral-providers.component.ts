@@ -128,6 +128,11 @@ export class GeralProvidersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  applyFilterTwo(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceLegal.filter = filterValue.trim().toLowerCase();
+  }
+
   registerNewProvider() {
     const dialogRef = this.dialog.open(ServiceProviderComponent);
 
@@ -166,7 +171,6 @@ export class GeralProvidersComponent implements OnInit {
       this.getDataProvidersLegal();
     });
   }
-
 
   editProviderLegal(provider: any) {
     const dialogRef = this.dialog.open(GeralProvidersLegalComponent, {

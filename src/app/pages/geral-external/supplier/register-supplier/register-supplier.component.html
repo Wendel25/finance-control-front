@@ -1,72 +1,198 @@
-<div class="content">
+<div class="content" *ngIf="formPhysicalPerson">
   <div class="header">
-    <h2 mat-dialog-title>Cadastrar Fornecedor</h2>
+    <h2 mat-dialog-title>Cadastrar fornecedor</h2>
+    <mat-slide-toggle (change)="changeForm($event)">{{legalPerson}}</mat-slide-toggle>
   </div>
 
-  <form [formGroup]="formRegisterSupplier">
+  <form [formGroup]="formRegisterSupplierLegalPerson">
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Fornecedor</mat-label>
-        <input matInput formControlName="supplier">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput formControlName="name">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Pessoa Líder</mat-label>
-        <input matInput formControlName="leader_person">
+        <mat-label>CPF</mat-label>
+        <input matInput type="text" formControlName="cpf" mask="000.000.000-00">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Grupo</mat-label>
+        <mat-select disableRipple formControlName="group_name">
+          <mat-option *ngFor="let option of groups" [value]="option.group">
+            {{ option.group }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone Reserva</mat-label>
+        <input matInput formControlName="number_phone_reserve" mask="(00) 0000-0000">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" type="text" mask="00000-000" (blur)="getLocalizationByCEP($event)">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="city" [value]="city">
+      </mat-form-field>
+    </div>
+
+    <div class="content-fields">
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="district" [value]="district">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 43%;">
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 15%;">
+        <mat-label>Nº</mat-label>
+        <input matInput formControlName="number_localization">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Serviço Prestado</mat-label>
+        <input matInput formControlName="service_provider">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Observação</mat-label>
+        <textarea matInput formControlName="observation"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterSupplierLegalPerson.valid" (click)="registerProviderLegalPerson()">Cadastrar</button>
+
+  <div *ngIf="controlBarLoading">
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+  </div>
+</div>
+
+<div class="content" *ngIf="formLegalPerson">
+  <div class="header">
+    <h2 mat-dialog-title>Cadastrar fornecedor</h2>
+    <mat-slide-toggle (change)="changeForm($event)" checked>{{phisicalPerson}}</mat-slide-toggle>
+  </div>
+
+  <form [formGroup]="formRegisterSupplierPhisicalPerson">
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Razão Social</mat-label>
+        <input matInput formControlName="social_reason">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome Fantasia</mat-label>
+        <input matInput formControlName="fantasy_name">
       </mat-form-field>
     </div>
 
     <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>CNPJ</mat-label>
-        <input matInput type="text" formControlName="cnpj" mask="00.000.000/0000-00">
+        <input matInput formControlName="cnpj" mask="00.000.000/0000-00">
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Inscrição Estadual</mat-label>
+        <input matInput formControlName="state_registration" mask="000.000.000.000">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Grupo</mat-label>
+        <mat-select disableRipple formControlName="group_name">
+          <mat-option *ngFor="let option of groups" [value]="option.group">
+            {{ option.group }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Celular</mat-label>
         <input matInput formControlName="number_phone" type="tel" mask="(00) 00000-0000">
       </mat-form-field>
-    </div>
 
-    <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Telefone Reserva</mat-label>
         <input matInput formControlName="number_phone_reserve" mask="(00) 0000-0000">
       </mat-form-field>
+    </div>
 
+    <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>CEP</mat-label>
         <input matInput formControlName="cep" type="text" mask="00000-000" (blur)="getLocalizationByCEP($event)">
       </mat-form-field>
-    </div>
 
-    <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Cidade</mat-label>
         <input matInput formControlName="city" [value]="city">
       </mat-form-field>
+    </div>
 
-      <mat-form-field appearance="outline">
+    <div class="content-fields">
+      <mat-form-field appearance="outline" style="width: 30%;">
         <mat-label>Bairro</mat-label>
         <input matInput formControlName="district" [value]="district">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 43%;">
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="localization" [value]="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 15%;">
+        <mat-label>Nº</mat-label>
+        <input matInput formControlName="number_localization">
       </mat-form-field>
     </div>
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Endereço</mat-label>
-        <input matInput formControlName="localization" [value]="address">
+        <mat-label>Serviço Prestado</mat-label>
+        <input matInput formControlName="service">
       </mat-form-field>
+    </div>
 
+    <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email">
+        <mat-label>Observação</mat-label>
+        <textarea matInput formControlName="observation"></textarea>
       </mat-form-field>
     </div>
   </form>
 
-  <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterSupplier.valid" (click)="registerProviderLegalPerson()">Cadastrar</button>
-  <br><br>
+  <button class="btn" mat-raised-button color="accent" [disabled]="!formRegisterSupplierPhisicalPerson.valid" (click)="registerProviderPhisicalPerson()">Cadastrar</button>
+  <br>
 
   <div *ngIf="controlBarLoading">
     <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>

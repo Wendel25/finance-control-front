@@ -16,7 +16,7 @@ import { ErrorService } from '../../../../services/error.service';
 import { SuccessService } from '../../../../services/success.service';
 
 @Component({
-  selector: 'app-edit-supplier',
+  selector: 'app-edit-supplier-legal',
   standalone: true,
   imports: [
     MatSelectModule,
@@ -31,12 +31,11 @@ import { SuccessService } from '../../../../services/success.service';
     MatDialogModule,
   ],
   providers: [EsternalService],
-  templateUrl: './edit-supplier.component.html',
-  styleUrl: './edit-supplier.component.scss'
+  templateUrl: './edit-supplier-legal.component.html',
+  styleUrl: './edit-supplier-legal.component.scss'
 })
-
-export class EditSupplierComponent {
-  @Output() updateSupplier = new EventEmitter<void>()
+export class EditSupplierLegalComponent {
+  @Output() updateSupplierLegal = new EventEmitter<void>()
 
   formUpdateSupplier!: FormGroup
 
@@ -50,14 +49,16 @@ export class EditSupplierComponent {
     private apiService: EsternalService,
     private errorService: ErrorService,
     private successService: SuccessService,
-    private dialogRef: MatDialogRef<EditSupplierComponent>
+    private dialogRef: MatDialogRef<EditSupplierLegalComponent>
   ) {
     this.idUser = data.id
     this.active = data.active
     this.observation = data.observation
 
-    const name = data.name
-    const cpf = data.cpf
+    const social_reason = data.social_reason
+    const fantasy_name = data.fantasy_name
+    const cnpj = data.cnpj
+    const state_registration = data.state_registration
     const group_name = data.group_name
     const number_phone = data.number_phone
     const number_phone_reserve = data.number_phone_reserve
@@ -66,12 +67,14 @@ export class EditSupplierComponent {
     const district = data.district
     const localization = data.localization
     const number_localization = data.number_localization
-    const service_provider = data.service_provider
+    const service = data.service
 
     this.formUpdateSupplier = this.formBuilder.group({
-      name: [name, Validators.required],
-      cpf: [cpf, Validators.required],
-      group_name: [group_name, Validators.required],
+      social_reason: [social_reason, Validators.required],
+      fantasy_name: [fantasy_name],
+      cnpj: [cnpj, Validators.required],
+      state_registration: [state_registration],
+      group_name: [group_name],
       number_phone: [number_phone, Validators.required],
       number_phone_reserve: [number_phone_reserve],
       cep: [cep, Validators.required],
@@ -79,7 +82,7 @@ export class EditSupplierComponent {
       district: [district, Validators.required],
       localization: [localization, Validators.required],
       number_localization: [number_localization, Validators.required],
-      service_provider: [service_provider, Validators.required],
+      service: [service, Validators.required],
     });
   }
 
@@ -109,10 +112,12 @@ export class EditSupplierComponent {
       const id = this.idUser
 
       const formData = {
-        name: this.formUpdateSupplier.get('name')?.value,
-        cpf: this.formUpdateSupplier.get('cpf')?.value,
+        social_reason: this.formUpdateSupplier.get('social_reason')?.value,
+        fantasy_name: this.formUpdateSupplier.get('fantasy_name')?.value,
+        cnpj: this.formUpdateSupplier.get('cnpj')?.value,
+        state_registration: this.formUpdateSupplier.get('state_registration')?.value,
         group_name: this.formUpdateSupplier.get('group_name')?.value,
-        service_provider: this.formUpdateSupplier.get('service_provider')?.value,
+        service: this.formUpdateSupplier.get('service')?.value,
         number_phone: this.formUpdateSupplier.get('number_phone')?.value,
         number_phone_reserve: this.formUpdateSupplier.get('number_phone_reserve')?.value,
         cep: this.formUpdateSupplier.get('cep')?.value,
@@ -124,11 +129,11 @@ export class EditSupplierComponent {
         active: this.active.toString()
       }
 
-      this.apiService.updateSupplier(id, formData).subscribe(
+      this.apiService.updateSupplierLegal(id, formData).subscribe(
         (data) => {
           this.successService.successUpdateUser();
           this.dialogRef.close()
-          this.updateSupplier.emit();
+          this.updateSupplierLegal.emit();
         },
         (error) => {
           console.log('Erro ao atualizar cadastro', error);

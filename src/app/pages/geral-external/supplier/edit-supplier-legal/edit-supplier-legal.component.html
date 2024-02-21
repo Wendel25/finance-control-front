@@ -4,13 +4,25 @@
 
     <div class="fields">
       <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput formControlName="name">
+        <mat-label>Razão Social</mat-label>
+        <input matInput formControlName="social_reason">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>CPF</mat-label>
-        <input matInput formControlName="cpf" mask="000.000.000-00">
+        <mat-label>Nome Fantasia</mat-label>
+        <input matInput formControlName="fantasy_name">
+      </mat-form-field>
+    </div>
+
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Inscrição Estadual</mat-label>
+        <input matInput formControlName="state_registration" mask="000.000.000.000">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CNPJ</mat-label>
+        <input matInput formControlName="cnpj" mask="00.000.000/0000-00">
       </mat-form-field>
     </div>
 
@@ -55,7 +67,7 @@
         <input matInput formControlName="district">
       </mat-form-field>
 
-      <mat-form-field appearance="outline" style="width: 42%;">
+      <mat-form-field appearance="outline" style="width: 43%;">
         <mat-label>Endereço</mat-label>
         <input matInput formControlName="localization">
       </mat-form-field>
@@ -69,7 +81,7 @@
     <div class="fields">
       <mat-form-field appearance="outline">
         <mat-label>Serviço prestado</mat-label>
-        <input matInput formControlName="service_provider">
+        <input matInput formControlName="service">
       </mat-form-field>
     </div>
   </div>
