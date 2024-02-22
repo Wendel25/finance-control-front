@@ -13,4 +13,19 @@
       </div>
     </mat-menu>
   </div>
+
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="menuRegisterProducts" class="btn">
+      <div class="content-btn">
+        <mat-icon>add_shopping_cart</mat-icon>
+         Produto
+      </div>
+    </button>
+
+    <mat-menu #menuRegisterProducts="matMenu">
+      <div class="itens">
+        <button (click)="newProduct('700ms', '300ms')">Novo Produto</button>
+      </div>
+    </mat-menu>
+  </div>
 </section>

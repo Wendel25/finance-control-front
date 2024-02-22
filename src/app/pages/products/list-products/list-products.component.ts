@@ -17,25 +17,24 @@ import { ApiService } from '../services/api.service';
   styleUrl: './list-products.component.scss'
 })
 
-export class ListProductsComponent implements OnInit{
+export class ListProductsComponent implements OnInit {
   constructor(
     private apiService: ApiService
   ) { }
 
   panelOpenState = false;
-  categories: any[] = [];
+  categories: string[] = [];
+  products: any[] = [];
 
   getCategoriesTitle() {
-    this.apiService.getCategory().subscribe(
+    this.apiService.getProducts().subscribe(
       (data) => {
-        data.results.forEach((result: any) => {
-          this.categories.push(result.category);
-        });
+        this.categories = Object.keys(data.results);
       },
-      (error) =>{
+      (error) => {
         console.log("erro ao buscar categorias", error);
       }
-    )
+    );
   }
 
   ngOnInit(): void {

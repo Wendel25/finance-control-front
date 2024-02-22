@@ -48,4 +48,22 @@ export class ApiService {
     const headers = this.addTokenToHeaders();
     return this.http.delete(url, { headers: headers });
   }
+
+  getSuppliers(): Observable<any> {
+    const url = `${this.API_URL}product-suppliers`;
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
+  }
+
+  insertProduct(formData: any): Observable<any> {
+    const url = `${this.API_URL}new-product`;
+    const headers = this.addTokenToHeaders();
+    return this.http.post(url, formData, { headers: headers });
+  }
+
+  getProducts(): Observable<any>{
+    const url = `${this.API_URL}products`;
+    const headers = this.addTokenToHeaders();
+    return this.http.get(url, { headers: headers });
+  }
 }

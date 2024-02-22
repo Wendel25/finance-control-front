@@ -6,6 +6,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { ListCategoryComponent } from './list-category/list-category.component';
+import { RegisterProductComponent } from './register-product/register-product.component';
 
 @Component({
   selector: 'app-menu-products',
@@ -28,6 +29,14 @@ export class MenuProductsComponent {
 
   newCategory(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ListCategoryComponent, {
+      width: '450px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  newProduct(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(RegisterProductComponent, {
       width: '450px',
       enterAnimationDuration,
       exitAnimationDuration,
