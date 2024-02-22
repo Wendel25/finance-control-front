@@ -8,6 +8,10 @@ export class ErrorService {
 
   constructor(private snackBar: MatSnackBar) { }
 
+  tokenInvalid() {
+    this.snackBar.open(`Sua sessão inspirou. Faça login novamente!`, 'Fechar');
+  }
+
   errorNewCategory() {
     this.snackBar.open(`Erro ao cadastrar nova categoria`, 'Fechar', {
       duration: 3000,

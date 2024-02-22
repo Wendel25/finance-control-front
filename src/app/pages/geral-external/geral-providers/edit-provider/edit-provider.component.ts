@@ -73,7 +73,7 @@ export class EditProviderComponent {
       name: [name, Validators.required],
       cpf: [cpf, Validators.required],
       group_name: [group_name, Validators.required],
-      birth_date: [birth_date, Validators.required],
+      birth_date: [birth_date],
       number_phone: [number_phone, Validators.required],
       number_phone_reserve: [number_phone_reserve],
       cep: [cep, Validators.required],
@@ -126,6 +126,8 @@ export class EditProviderComponent {
         observation: this.observation,
         active: this.active.toString()
       }
+
+      console.log(formData);
 
       this.apiService.updateProviders(id, formData).subscribe(
         (data) => {

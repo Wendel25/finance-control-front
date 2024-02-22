@@ -1,0 +1,16 @@
+<section class="content-itens">
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="menuCategories" class="btn">
+      <div class="content-btn">
+        <mat-icon>category</mat-icon>
+        Categorias
+      </div>
+    </button>
+
+    <mat-menu #menuCategories="matMenu">
+      <div class="itens">
+        <button (click)="newCategory('700ms', '300ms')">Nova categoria</button>
+      </div>
+    </mat-menu>
+  </div>
+</section>

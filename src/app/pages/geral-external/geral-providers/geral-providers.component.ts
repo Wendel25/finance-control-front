@@ -94,7 +94,11 @@ export class GeralProvidersComponent implements OnInit {
         this.dataSource.data = this.dataProviders;
       },
       (error) => {
-        console.log("Erro ao buscar dados", error);
+        if(error.error && error.error.error === 'Token inválido'){
+          this.errorService.tokenInvalid();
+        }else{
+          console.log("Erro ao buscar dados", error);
+        }
       }
     )
   }

@@ -73,7 +73,7 @@ export class ObservationComponent {
       localization: this.data.localization,
       number_localization: this.data.number_localization,
       service_provider: this.data.service_provider,
-      active: this.data.active,
+      active: this.data.active.toString(),
       observation: this.formObservation.value.observation
     };
 

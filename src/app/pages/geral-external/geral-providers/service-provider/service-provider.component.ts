@@ -172,6 +172,8 @@ export class ServiceProviderComponent {
   }
 
   formatDate(date: Date): string {
+    if (!date) return '';
+
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
@@ -186,8 +188,10 @@ export class ServiceProviderComponent {
     if (this.formRegisterProviderLegalPerson.valid) {
       const formData = this.formRegisterProviderLegalPerson.value;
 
-      const birthDate = this.formatDate(formData.birth_date);
-      formData.birth_date = birthDate;
+      if (formData.birth_date) {
+        const birthDate = this.formatDate(new Date(formData.birth_date));
+        formData.birth_date = birthDate;
+      }
 
       this.esternalService.registerProviders(formData).subscribe(
         (data) => {

@@ -13,7 +13,7 @@ import { SuccessService } from '../../../../services/success.service';
 import { EsternalService } from '../../service/esternal.service';
 
 @Component({
-  selector: 'app-observation',
+  selector: 'app-observation2',
   standalone: true,
   imports: [
     CommonModule,
